@@ -29,6 +29,7 @@ import { UserComponent } from './features/user/user.component';
 export class AppComponent {
     isScreenSmall?: boolean;
     navigation?: Navigation;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
