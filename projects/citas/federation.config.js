@@ -3,6 +3,8 @@ const { withNativeFederation, shareAll } = require('@angular-architects/native-f
 
 module.exports = withNativeFederation({
 
+
+
   name: 'citas',
 
   exposes: {
