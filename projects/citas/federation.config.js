@@ -6,7 +6,7 @@ module.exports = withNativeFederation({
   name: 'citas',
 
   exposes: {
-    './Component': './projects/citas/src/app/app.component.ts',
+    './Module': './projects/citas/src/app/app.module.ts',
   },
 
   shared: {
