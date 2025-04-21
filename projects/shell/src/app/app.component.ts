@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { FuseLoadingBarComponent } from '@fuse/components/loading-bar';
-import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
+import { FuseNavigationItem, FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
 import { Subject, takeUntil } from 'rxjs';
 // import { NavigationService } from '../../../theme/src/app/core/navigation/navigation.service';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -29,6 +29,7 @@ import { UserComponent } from './features/user/user.component';
 export class AppComponent {
     isScreenSmall?: boolean;
     navigation?: Navigation;
+    defaultNavigation?: FuseNavigationItem[];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -62,6 +63,92 @@ export class AppComponent {
      * On init
      */
     ngOnInit(): void {
+
+
+        this.defaultNavigation = [
+            {
+                id: 'pages.authentication',
+                title: 'Logística',
+                type: 'collapsable',
+                icon: 'heroicons_outline:truck',
+                children: [
+                    {
+                        id: 'pages.authentication.sign-in',
+                        title: 'Citas',
+                        type: 'collapsable',
+                        children: [
+                            {
+                                id: 'pages.authentication.sign-in.classic',
+                                title: 'Nueva Cita',
+                                type: 'basic',
+                                link: './citas/',
+                            },
+                            {
+                                id: 'pages.authentication.sign-in.modern',
+                                title: 'Citas Pendientes',
+                                type: 'basic',
+                                link: '#',
+                            },
+                            {
+                                id: 'pages.authentication.sign-in.modern-reversed',
+                                title: 'Citas Rechazadas SAP',
+                                type: 'basic',
+                                link: '#',
+                            },
+                            {
+                                id: 'pages.authentication.sign-in.split-screen',
+                                title: 'Citas Rechazadas',
+                                type: 'basic',
+                                link: '#',
+                            },
+                            {
+                                id: 'pages.authentication.sign-in.split-screen-reversed',
+                                title: 'Proveedor',
+                                type: 'basic',
+                                link: '#',
+                            },
+                            {
+                                id: 'pages.authentication.sign-in.fullscreen',
+                                title: 'Bodega',
+                                type: 'basic',
+                                link: '#',
+                            },
+                            {
+                                id: 'pages.authentication.sign-in.fullscreen-reversed',
+                                title: 'Reporte',
+                                type: 'collapsable',
+                                children: [
+                                    {
+                                        id: 'pages.authentication.sign-in.classic',
+                                        title: 'Diario',
+                                        type: 'basic',
+                                        link: '#',
+                                    },{
+                                        id: 'pages.authentication.sign-in.classic',
+                                        title: 'Citas Rechazadas',
+                                        type: 'basic',
+                                        link: '#',
+                                    },{
+                                        id: 'pages.authentication.sign-in.classic',
+                                        title: 'citas a futuro',
+                                        type: 'basic',
+                                        link: '#',
+                                    },
+                                ],
+                            },
+                            {
+                                id: 'pages.authentication.sign-in.fullscreen-reversedx',
+                                title: 'Recepcion',
+                                type: 'basic',
+                                link: '-reversed',
+                            },
+                        ],
+                    }]}
+        ];
+
+
+
+
         // Subscribe to navigation data
         this._navigationService.navigation$
             .pipe(takeUntil(this._unsubscribeAll))

@@ -6,7 +6,7 @@
     class="dark bg-primary-cer print:hidden"
     [mode]="isScreenSmall ? 'over' : 'side'"
     [name]="'mainNavigation'"
-    [navigation]="navigation?.default ?? []"
+    [navigation]="defaultNavigation??[]"
     [opened]="!isScreenSmall"
 >
     <!-- Navigation header hook -->
