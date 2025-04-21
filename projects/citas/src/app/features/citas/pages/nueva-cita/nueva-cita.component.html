@@ -10,15 +10,10 @@ class="relative flex flex-0 flex-col px-6 py-8 sm:flex-row sm:items-center sm:ju
         { label: 'Citas', url: './' },
         { label: 'Nueva Cita' },
     ]"
+    titulo="Proveedor"
 />
 </div>
-    <div
-        class="relative flex flex-0 flex-col px-6 sm:flex-row sm:items-center sm:justify-between md:px-8"
-    >
-        
-        <div class="text-4xl font-bold tracking-tight">Proveedor</div>
-    </div>
-
+   
     <div class="flex flex-auto overflow-hidden">
         <div
             class="flex flex-auto flex-col overflow-hidden px-6 sm:mb-18 sm:overflow-y-auto"
@@ -76,6 +71,7 @@ class="relative flex flex-0 flex-col px-6 py-8 sm:flex-row sm:items-center sm:ju
                     <th mat-header-cell *matHeaderCellDef>Citas</th>
                     <td mat-cell *matCellDef="let element">
                         <button
+                        class="text-blue-500"
                             mat-icon-button
                             [routerLink]="['./nueva-cita', element.registro]"
                             matTooltip="Ver citas"
