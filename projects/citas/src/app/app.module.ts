@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { CoreModule } from './core/core.module';
 
-
-
 @NgModule({
   imports: [
     CommonModule,
