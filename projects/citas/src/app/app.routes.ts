@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
+import { LoginPageComponent } from 'shared';
 
 export const routes: Routes = [
+    {
+        path: 'login',
+        component: LoginPageComponent,
+    },
     {
         // pathMatch: 'full',
         path: '',

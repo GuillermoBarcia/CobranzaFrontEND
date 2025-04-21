@@ -13,5 +13,5 @@ import { RouterModule } from '@angular/router';
 })
 export class BreadCrumbComponent {
   @Input() items: { label: string; url?: string }[] = [];
-
+  @Input() titulo?:string | null;
 }
