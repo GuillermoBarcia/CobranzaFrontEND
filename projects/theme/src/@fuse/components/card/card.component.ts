@@ -26,9 +26,9 @@ export class FuseCardComponent implements OnChanges {
     static ngAcceptInputType_flippable: BooleanInput;
     /* eslint-enable @typescript-eslint/naming-convention */
 
-    @Input() expanded: boolean = false;
-    @Input() face: FuseCardFace = 'front';
-    @Input() flippable: boolean = false;
+    @Input() expanded?: boolean = false;
+    @Input() face?: FuseCardFace = 'front';
+    @Input() flippable?: boolean = false;
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -37,6 +37,7 @@ export class FuseCardComponent implements OnChanges {
     /**
      * Host binding for component classes
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @HostBinding('class') get classList(): any {
         /* eslint-disable @typescript-eslint/naming-convention */
         return {
@@ -62,7 +63,7 @@ export class FuseCardComponent implements OnChanges {
         if ('expanded' in changes) {
             // Coerce the value to a boolean
             this.expanded = coerceBooleanProperty(
-                changes.expanded.currentValue
+                changes["expanded"].currentValue
             );
         }
 
@@ -70,7 +71,7 @@ export class FuseCardComponent implements OnChanges {
         if ('flippable' in changes) {
             // Coerce the value to a boolean
             this.flippable = coerceBooleanProperty(
-                changes.flippable.currentValue
+                changes["flippable"].currentValue
             );
         }
     }
