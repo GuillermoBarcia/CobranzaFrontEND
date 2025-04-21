@@ -199,6 +199,11 @@
 							{
 								"glob": "**/*",
 								"input": "projects/citas/public"
+							},
+							{
+								"glob": "**/*",
+								"input": "projects/theme/src/assets",
+								"output": "/assets/theme/"
 							}
 						],
 						"styles": [
@@ -225,7 +230,18 @@
 								"input": "projects/citas/public"
 							}
 						],
+						"stylePreprocessorOptions": {
+                            "includePaths": ["projects/theme/src/@fuse/styles"]
+                        },
 						"styles": [
+							"projects/theme/src/styles/splash-screen.css",
+                            "projects/theme/src/styles/inter.css",
+                            "projects/theme/src/@fuse/styles/tailwind.scss",
+                            "projects/theme/src/@fuse/styles/themes.scss",
+                            "projects/theme/src/styles/vendors.scss",
+                            "projects/theme/src/@fuse/styles/main.scss",
+                            "projects/theme/src/styles/styles.scss",
+                            "projects/theme/src/styles/tailwind.scss",
 							"projects/citas/src/styles.scss"
 						],
 						"scripts": []
