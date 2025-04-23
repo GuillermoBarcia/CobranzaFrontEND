@@ -93,13 +93,13 @@ export class AppComponent {
                                 id: 'pages.authentication.sign-in.modern-reversed',
                                 title: 'Citas Rechazadas SAP',
                                 type: 'basic',
-                                link: '#',
+                                link: './citas/citas-rechazadas-sap',
                             },
                             {
                                 id: 'pages.authentication.sign-in.split-screen',
                                 title: 'Citas Rechazadas',
                                 type: 'basic',
-                                link: '#',
+                                link: './citas/citas-rechazadas',
                             },
                             {
                                 id: 'pages.authentication.sign-in.split-screen-reversed',

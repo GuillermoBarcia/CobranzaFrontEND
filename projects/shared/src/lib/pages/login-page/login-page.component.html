@@ -1,1 +1,47 @@
-<p>login-page works!</p>
+<!-- Header -->
+<header class="header">
+  <h1>Portal Administrativo de Proveedores</h1>
+</header>
+
+<!-- Espacio para compensar header fijo -->
+<div class="header-space"></div>
+
+<!-- Contenedor principal -->
+<div class="login-container">
+  <!-- Formulario -->
+  <div class="login-form">
+    <h2>Inicio Sesión</h2>
+
+    <select [(ngModel)]="loginData.sociedad" name="sociedad">
+      <option value="" disabled selected>Sociedad</option>
+      <option *ngFor="let s of sociedades" [value]="s">{{ s }}</option>
+    </select>
+
+    <input
+      type="text"
+      placeholder="Usuario"
+      [(ngModel)]="loginData.usuario"
+      name="usuario"
+    />
+
+    <input
+      type="password"
+      placeholder="Contraseña"
+      [(ngModel)]="loginData.contrasena"
+      name="contrasena"
+    />
+
+    <button (click)="onSubmit()">Ingresar</button>
+  </div>
+
+  <!-- Imagen y overlay -->
+  <div class="login-image">
+    <img src="https://s3-alpha-sig.figma.com/img/7f39/53d8/7a44f58ae42f74d1a31557f950779401?Expires=1745798400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=YTKdnS643nTHmBOZs4S3agm1JL6sf-Bx8zbH10dETnPsjdZHE3mP0WVCQU4suAKuPWpwn~fggjOg5DKAc35JGa-hJLT9AnKuoUDANISLhJUsvNz5so9-w24fG-0IBQQdy62tEhpES7EkGy4tNwNkXvwO6IN1bIQxRIC8RF7PoBDdrYZq6~-fh8fudL~nOY5m987L1Oo1qBzwv8IJAK1E-atyh3q0Sr-k~CUfKD7708zPJ67-eA5BSrBFy2yubJeOjRJu-ORRLPnu6F-UOHqODPv8r9j~KQeBMSaheP8eHcyhBr7nfdwc8zubgdSuvCmGb64394zmqoXA9rJ-G6-4JA__"
+         alt="Grupo El Rosado" />
+    <div class="color-overlay"></div>
+    <div class="image-overlay">
+      <h3>GRUPO</h3>
+      <h1>EL ROSADO</h1>
+    </div>
+  </div>
+</div>

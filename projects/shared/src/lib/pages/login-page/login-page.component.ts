@@ -1,18 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'lib-login-page',
-
-  imports: [
-    CommonModule,
-    RouterModule 
-  ],
+  selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+  styleUrls: ['./login-page.component.scss'],
+  imports: [CommonModule, FormsModule] // <-- AGREGA ESTO
 })
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class LoginPageComponent {
+  loginData = {
+    sociedad: '',
+    usuario: '',
+    contrasena: ''
+  };
 
+  sociedades: string[] = ['Corporación El Rosado', 'Mi Comisariato', 'Ferrisariato', 'Mi Juguetería'];
+
+  onSubmit(): void {
+    console.log('Datos del login:', this.loginData);
+  }
 }
