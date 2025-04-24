@@ -24,4 +24,8 @@ export const citasRoute: Routes = [
   path: 'citas-canceladas',
   component: CitasRechazadasComponent,
   },
+  {
+    path: 'citas-pendientes',
+    component: CitasPendientesComponent,
+  },
 ];

@@ -1,0 +1,22 @@
+/* Centrar contenido de celdas */
+.mat-column-sap,
+.mat-column-planificar,
+.mat-column-rechazar {
+  text-align: center !important;
+  justify-content: center !important;
+
+  .mat-mdc-icon-button {
+    margin: 0 auto; /* Centra el botón horizontalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Opcional: Ajustar el header también */
+.mat-mdc-header-cell.mat-column-sap,
+.mat-mdc-header-cell.mat-column-planificar,
+.mat-mdc-header-cell.mat-column-rechazar {
+  text-align: center !important;
+  justify-content: center !important;
+}

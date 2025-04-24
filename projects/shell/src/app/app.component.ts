@@ -87,7 +87,7 @@ export class AppComponent {
                                 id: 'pages.authentication.sign-in.modern',
                                 title: 'Citas Pendientes',
                                 type: 'basic',
-                                link: '#',
+                                link: './citas/citas-pendientes',
                             },
                             {
                                 id: 'pages.authentication.sign-in.modern-reversed',

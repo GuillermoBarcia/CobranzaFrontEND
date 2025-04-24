@@ -1,0 +1,117 @@
+<div
+    class="bg-card flex min-w-0 flex-auto flex-col sm:absolute sm:inset-0 sm:overflow-hidden dark:bg-transparent"
+>
+<div
+class="relative flex flex-0 flex-col px-6 py-8 sm:flex-row sm:items-center sm:justify-between md:px-8"
+>
+<lib-bread-crumb
+    [items]="[
+        { label: 'Logistica', url: './' },
+        { label: 'Citas', url: './' },
+        { label: 'Citas Pendientes' },
+    ]"
+    titulo="Planificación de Citas"
+/>
+</div>
+<div class="flex flex-auto overflow-hidden">
+  <div
+      class="flex flex-auto flex-col overflow-hidden px-6 sm:mb-18 sm:overflow-y-auto"
+  >
+      <table mat-table [dataSource]="dataSource" class="" matSort>
+          <!-- Columnas -->
+          <ng-container matColumnDef="numeroConsolidacion">
+              <th mat-header-cell *matHeaderCellDef>N. Consolidación</th>
+              <td mat-cell *matCellDef="let element">
+                  {{ element.numeroConsolidacion }}
+              </td>
+          </ng-container>
+
+          <ng-container matColumnDef="proveedor">
+              <th mat-header-cell *matHeaderCellDef>Proveedor</th>
+              <td mat-cell *matCellDef="let element">
+                  {{ element.proveedor }}
+              </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fechaPropuesta">
+              <th mat-header-cell *matHeaderCellDef>Fecha Propuesta</th>
+              <td mat-cell *matCellDef="let element">
+                  {{ element.fechaPropuesta }}
+              </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="horaInicialPropuesta">
+            <th mat-header-cell *matHeaderCellDef>Hora Inicial Propuesta</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.horaInicialPropuesta }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="horaFinPropuesta">
+          <th mat-header-cell *matHeaderCellDef>Hora Fin Propuesta</th>
+          <td mat-cell *matCellDef="let element">
+              {{ element.horaFinPropuesta }}
+          </td>
+      </ng-container>
+
+          <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let element">
+                  {{ element.estado }}
+              </td>
+          </ng-container>
+
+          <ng-container matColumnDef="sap">
+            <th mat-header-cell *matHeaderCellDef class="text-center">SAP</th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+              <div class="flex justify-center">
+                <button class="text-blue-500" mat-icon-button [routerLink]="['./nueva-cita', element.registro]" matTooltip="sap citas">
+                  <mat-icon>import_contacts</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="planificar">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Planificar</th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+              <div class="flex justify-center">
+                <button class="text-blue-500" mat-icon-button [routerLink]="['./nueva-cita', element.registro]" matTooltip="planificar citas">
+                  <mat-icon>import_contacts</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="rechazar">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Rechazar</th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+              <div class="flex justify-center">
+                <button class="text-red-500" mat-icon-button matTooltip="rechazar cita">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Cabecera y contenido -->
+          <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumns"
+              class="coro-table-header"
+          ></tr>
+          <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns"
+          ></tr>
+      </table>
+
+      <mat-paginator
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25]"
+          showFirstLastButtons
+      ></mat-paginator>
+  </div>
+</div>
+</div>
