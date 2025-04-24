@@ -91,15 +91,15 @@ export class AppComponent {
                             },
                             {
                                 id: 'pages.authentication.sign-in.modern-reversed',
-                                title: 'Citas Rechazadas SAP',
+                                title: 'Citas Canceladas SAP',
                                 type: 'basic',
-                                link: './citas/citas-rechazadas-sap',
+                                link: './citas/citas-canceladas-sap',
                             },
                             {
                                 id: 'pages.authentication.sign-in.split-screen',
-                                title: 'Citas Rechazadas',
+                                title: 'Citas Canceladas',
                                 type: 'basic',
-                                link: './citas/citas-rechazadas',
+                                link: './citas/citas-canceladas',
                             },
                             {
                                 id: 'pages.authentication.sign-in.split-screen-reversed',
@@ -125,7 +125,7 @@ export class AppComponent {
                                         link: '#',
                                     },{
                                         id: 'pages.authentication.sign-in.classic',
-                                        title: 'Citas Rechazadas',
+                                        title: 'Citas Canceladas',
                                         type: 'basic',
                                         link: '#',
                                     },{

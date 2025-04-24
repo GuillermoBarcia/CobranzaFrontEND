@@ -65,9 +65,9 @@ dataSource = new MatTableDataSource<Sapcedi>([
 
   aprobarCita(cita: Sapcedi): void {
     this.citasDialogService.openAprobarCitaDialog(cita, {
-      titulo: 'Aprobar Cita Rechazada',
-      mensaje: `¿Estás seguro de aprobar la cita rechazada ${cita.numeroConsolidacion}?`,
-      textoConfirmar: 'Aprobar',
+      titulo: 'Aprobar Cita Cancelada',
+      mensaje: `¿Estás seguro de aprobar la cita Cancelada?`,
+      textoConfirmar: 'Aceptar',
       textoCancelar: 'Cancelar'
     }).then(confirmado => {
       if (confirmado) {
@@ -77,7 +77,7 @@ dataSource = new MatTableDataSource<Sapcedi>([
   }
 
   private procesarAprobacion(cita: Sapcedi): void {
-    // Aquí va tu lógica para aprobar la cita
+    // lógica para aprobar la cita
     console.log('Cita aprobada:', cita.numeroConsolidacion);
   }
 }

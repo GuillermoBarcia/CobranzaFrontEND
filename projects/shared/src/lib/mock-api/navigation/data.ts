@@ -27,13 +27,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                     },
                     {
                         id: 'pages.authentication.sign-in.modern-reversed',
-                        title: 'Citas Rechazadas SAP',
+                        title: 'Citas Canceladas SAP',
                         type: 'basic',
                         link: '#',
                     },
                     {
                         id: 'pages.authentication.sign-in.split-screen',
-                        title: 'Citas Rechazadas',
+                        title: 'Citas Canceladas',
                         type: 'basic',
                         link: '#',
                     },
@@ -61,7 +61,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                                 link: '#',
                             },{
                                 id: 'pages.authentication.sign-in.classic',
-                                title: 'Citas Rechazadas',
+                                title: 'Citas Canceladas',
                                 type: 'basic',
                                 link: '#',
                             },{

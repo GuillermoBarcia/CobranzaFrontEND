@@ -62,9 +62,9 @@ export class CitasRechazadasComponent {
 
   aprobarCita(cita: Sapcedi): void {
     this.citasDialogService.openAprobarCitaDialog(cita, {
-      titulo: 'Aprobar Cita Rechazada',
-      mensaje: `¿Estás seguro de aprobar la cita rechazada ${cita.numeroConsolidacion}?`,
-      textoConfirmar: 'Aprobar',
+      titulo: 'Aprobar Cita Cancelada',
+      mensaje: `¿Estás seguro de aprobar la cita Cancelada?`,
+      textoConfirmar: 'Aceptar',
       textoCancelar: 'Cancelar'
     }).then(confirmado => {
       if (confirmado) {
