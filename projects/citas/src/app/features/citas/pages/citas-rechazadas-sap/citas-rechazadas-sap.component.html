@@ -64,17 +64,17 @@ class="relative flex flex-0 flex-col px-6 py-8 sm:flex-row sm:items-center sm:ju
 
 
           <ng-container matColumnDef="aprobar">
-              <th mat-header-cell *matHeaderCellDef>Aprobar</th>
-              <td mat-cell *matCellDef="let element">
-                  <button
-                  class="text-blue-500"
-                      mat-icon-button
-                      [routerLink]="['./nueva-cita', element.registro]"
-                      matTooltip="Ver citas"
-                  >
-                      <mat-icon>import_contacts</mat-icon>
-                  </button>
-              </td>
+            <th mat-header-cell *matHeaderCellDef>Aprobar</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                class="text-blue-500"
+                mat-icon-button
+                (click)="aprobarCita(element)"
+                matTooltip="Aprobar cita"
+              >
+                <mat-icon>approval</mat-icon>
+              </button>
+            </td>
           </ng-container>
 
           <!-- Cabecera y contenido -->

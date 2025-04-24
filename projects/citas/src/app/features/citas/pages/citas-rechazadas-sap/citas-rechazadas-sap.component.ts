@@ -4,8 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { Proveedor, SharedLibraryModule } from 'shared';
+import { SharedLibraryModule } from 'shared';
 import { Sapcedi } from '../../../../../../../shared/src/lib/models/sapcedi.model';
+import { CitasDialogService } from '../../services/citas-dialog.service';
 
 
 @Component({
@@ -55,8 +56,28 @@ dataSource = new MatTableDataSource<Sapcedi>([
   // Más registros...
 ]);
 
+  constructor(private citasDialogService: CitasDialogService) {}
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  aprobarCita(cita: Sapcedi): void {
+    this.citasDialogService.openAprobarCitaDialog(cita, {
+      titulo: 'Aprobar Cita Rechazada',
+      mensaje: `¿Estás seguro de aprobar la cita rechazada ${cita.numeroConsolidacion}?`,
+      textoConfirmar: 'Aprobar',
+      textoCancelar: 'Cancelar'
+    }).then(confirmado => {
+      if (confirmado) {
+        this.procesarAprobacion(cita);
+      }
+    });
+  }
+
+  private procesarAprobacion(cita: Sapcedi): void {
+    // Aquí va tu lógica para aprobar la cita
+    console.log('Cita aprobada:', cita.numeroConsolidacion);
   }
 }
