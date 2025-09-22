@@ -1,0 +1,108 @@
+<div
+    class="bg-card flex min-w-0 flex-auto flex-col sm:absolute sm:inset-0 sm:overflow-hidden dark:bg-transparent"
+>
+<div
+class="relative flex flex-0 flex-col px-6 py-8 sm:flex-row sm:items-center sm:justify-between md:px-8"
+>
+<lib-bread-crumb
+    [items]="[
+        { label: 'Cobranza', url: './' },
+        { label: 'Aprobar Solicitud Débito Cuenta' },
+    ]"
+    titulo="Aprobar Solicitud Débito Cuenta"
+/>
+</div>
+
+<div class="flex flex-auto overflow-hidden">
+  <div
+      class="flex flex-auto flex-col overflow-hidden px-6 sm:mb-18 sm:overflow-y-auto"
+  >
+
+
+      <table mat-table [dataSource]="dataSource" class="" matSort>
+          <!-- Columnas -->
+          <ng-container matColumnDef="numeroPagare">
+              <th mat-header-cell *matHeaderCellDef>N. Pagaré</th>
+              <td mat-cell *matCellDef="let element">
+                  {{ element.numeroPagare }}
+              </td>
+          </ng-container>
+
+          <ng-container matColumnDef="prestamo">
+              <th mat-header-cell *matHeaderCellDef>Prestamo</th>
+              <td mat-cell *matCellDef="let element">
+                  {{ element.prestamo }}
+              </td>
+          </ng-container>
+
+              <ng-container matColumnDef="cuenta">
+              <th mat-header-cell *matHeaderCellDef>Cuenta</th>
+              <td mat-cell *matCellDef="let element">
+                  {{ element.cuenta }}
+              </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fechaMaquina">
+              <th mat-header-cell *matHeaderCellDef>Fecha Maquina</th>
+              <td mat-cell *matCellDef="let element">
+                  {{ element.fechaMaquina }}
+              </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="fechaSistema">
+            <th mat-header-cell *matHeaderCellDef>Fecha Sistema</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.fechaSistema }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="usuario">
+          <th mat-header-cell *matHeaderCellDef>Usuario</th>
+          <td mat-cell *matCellDef="let element">
+              {{ element.usuario }}
+          </td>
+      </ng-container>
+
+          <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let element">
+                  {{ element.estado }}
+              </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="aprobar">
+            <th mat-header-cell *matHeaderCellDef>Aprobar</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                class="text-blue-500"
+                mat-icon-button
+                (click)="aprobarCita(element)"
+                matTooltip="Aprobar cita"
+              >
+                <mat-icon>approval</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <!-- Cabecera y contenido -->
+          <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumns"
+              class="coro-table-header"
+          ></tr>
+          <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns"
+          ></tr>
+      </table>
+
+      <mat-paginator
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25]"
+          showFirstLastButtons
+      ></mat-paginator>
+  </div>
+</div>
+</div>

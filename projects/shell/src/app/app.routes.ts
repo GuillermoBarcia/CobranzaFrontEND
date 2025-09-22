@@ -4,8 +4,8 @@ import { initialDataResolver } from './app.resolvers';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 
 export const routes: Routes = [
-   
-    
+
+
     {
         pathMatch: 'full',
         path: '',

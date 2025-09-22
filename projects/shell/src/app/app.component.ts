@@ -68,50 +68,26 @@ export class AppComponent {
         this.defaultNavigation = [
             {
                 id: 'pages.authentication',
-                title: 'Logística',
+                title: 'Módulo Cobranza',
                 type: 'collapsable',
-                icon: 'heroicons_outline:truck',
+                icon: 'heroicons_outline:credit-card',
                 children: [
                     {
                         id: 'pages.authentication.sign-in',
-                        title: 'Citas',
+                        title: 'Cobranza',
                         type: 'collapsable',
                         children: [
                             {
-                                id: 'pages.authentication.sign-in.classic',
-                                title: 'Nueva Cita',
+                                id: 'pages.authentication.sign-in.modern-reversed',
+                                title: 'Prestamos Judiciales',
                                 type: 'basic',
-                                link: './citas/',
-                            },
-                            {
-                                id: 'pages.authentication.sign-in.modern',
-                                title: 'Citas Pendientes',
-                                type: 'basic',
-                                link: './citas/citas-pendientes',
+                                link: './citas/prestamos-judiciales',
                             },
                             {
                                 id: 'pages.authentication.sign-in.modern-reversed',
-                                title: 'Citas Canceladas SAP',
+                                title: 'Solicitud Debito Cuenta',
                                 type: 'basic',
-                                link: './citas/citas-canceladas-sap',
-                            },
-                            {
-                                id: 'pages.authentication.sign-in.split-screen',
-                                title: 'Citas Canceladas',
-                                type: 'basic',
-                                link: './citas/citas-canceladas',
-                            },
-                            {
-                                id: 'pages.authentication.sign-in.split-screen-reversed',
-                                title: 'Proveedor',
-                                type: 'basic',
-                                link: '#',
-                            },
-                            {
-                                id: 'pages.authentication.sign-in.fullscreen',
-                                title: 'Bodega',
-                                type: 'basic',
-                                link: '#',
+                                link: './citas/aprobar-solicitud-debito-cuenta',
                             },
                             {
                                 id: 'pages.authentication.sign-in.fullscreen-reversed',
@@ -120,27 +96,44 @@ export class AppComponent {
                                 children: [
                                     {
                                         id: 'pages.authentication.sign-in.classic',
-                                        title: 'Diario',
+                                        title: 'Cobranza Diario',
                                         type: 'basic',
                                         link: '#',
                                     },{
                                         id: 'pages.authentication.sign-in.classic',
-                                        title: 'Citas Canceladas',
+                                        title: 'Cobranza 2',
                                         type: 'basic',
                                         link: '#',
                                     },{
                                         id: 'pages.authentication.sign-in.classic',
-                                        title: 'citas a futuro',
+                                        title: 'Cobranza 3',
                                         type: 'basic',
                                         link: '#',
                                     },
                                 ],
                             },
-                            {
-                                id: 'pages.authentication.sign-in.fullscreen-reversedx',
-                                title: 'Recepcion',
-                                type: 'basic',
-                                link: '-reversed',
+                           {
+                                id: 'pages.authentication.sign-in.fullscreen-reversed',
+                                title: 'Administración',
+                                type: 'collapsable',
+                                children: [
+                                    {
+                                        id: 'pages.authentication.sign-in.classic',
+                                        title: 'Abogado',
+                                        type: 'basic',
+                                        link: '#',
+                                    },{
+                                        id: 'pages.authentication.sign-in.classic',
+                                        title: 'Usuarios',
+                                        type: 'basic',
+                                        link: '#',
+                                    },{
+                                        id: 'pages.authentication.sign-in.classic',
+                                        title: 'Satje',
+                                        type: 'basic',
+                                        link: '#',
+                                    },
+                                ],
                             },
                         ],
                     }]}

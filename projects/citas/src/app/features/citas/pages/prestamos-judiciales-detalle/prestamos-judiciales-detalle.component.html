@@ -1,0 +1,194 @@
+<div [formGroup]="prestamosJudicialesForm" class="main-container-bg mx-auto px-4 py-6 w-full">
+  <!-- Componente de migas de pan -->
+  <lib-bread-crumb
+    [titulo]="'Préstamos Judiciales'"
+    [items]="[
+      { label: 'Cobranza', url: '/' },
+      { label: 'Prestamo judiciales', url: '/prestamos-judiciales' },
+      { label: 'Préstamos Judiciales detalle' }
+    ]"
+  ></lib-bread-crumb>
+
+  <div class="p-4 space-y-6">
+    <!-- Parte superior: Botones y título -->
+    <div class="flex justify-end items-center space-x-4 mb-4">
+      <!-- <button mat-button color="warn" class="button-cancel" [routerLink]="['/citas', 'prestamos-judiciales']">Cerrar</button> -->
+      <button mat-flat-button color="warn">Guardar</button>
+    </div>
+
+    <!-- Formulario en cuadrícula -->
+    <form class="bg-white rounded-xl shadow-md p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Pagare</mat-label>
+        <input matInput type="text" formControlName="pagare">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Abogado</mat-label>
+        <mat-select formControlName="abogado">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Entrega Expediente</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="fechaEntregaExpediente">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-checkbox formControlName="nullFechaEntregaExpediente">Null</mat-checkbox>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Valor Cuantia</mat-label>
+        <mat-select formControlName="valorCuantia">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tramite</mat-label>
+        <mat-select formControlName="tramite">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Med. Prevent.</mat-label>
+        <mat-select formControlName="medPrevent">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Cubreme Cautelar</mat-label>
+        <mat-select formControlName="cubremeCautelar">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Canton</mat-label>
+        <mat-select formControlName="canton">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="col-span-2">
+        <mat-label>Causa</mat-label>
+        <input matInput type="text" formControlName="causa">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Ult. Dilig</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="fechaUltDilig">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Deposito Gestion</mat-label>
+        <input matInput type="text" formControlName="depositoGestion">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Suger. Abogado</mat-label>
+        <mat-checkbox formControlName="sugerAbogado">Null</mat-checkbox>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Deudor</mat-label>
+        <input matInput type="text" formControlName="deudor">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Compromiso Mora</mat-label>
+        <input matInput [matDatepicker]="picker3" formControlName="fechaCompromisoMora">
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+        <mat-checkbox formControlName="nullFechaCompromisoMora">Null</mat-checkbox>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Demanda</mat-label>
+        <input matInput [matDatepicker]="picker4" formControlName="fechaDemanda">
+        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+        <mat-datepicker #picker4></mat-datepicker>
+        <mat-checkbox formControlName="nullFechaDemanda">Null</mat-checkbox>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Materia</mat-label>
+        <mat-select formControlName="materia">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Medida Cautelar</mat-label>
+        <mat-select formControlName="medidaCautelar">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Avaluo Tentativo</mat-label>
+        <input matInput type="text" formControlName="avaluoTentativo">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <mat-select formControlName="provincia">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Unidad Judicial</mat-label>
+        <mat-select formControlName="unidadJudicial">
+          <mat-option value="">Seleccione un valor</mat-option>
+          <!-- Opciones dinámicas aquí -->
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Accion Realizada</mat-label>
+        <input matInput type="text" formControlName="accionRealizada">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Comenta Satje</mat-label>
+        <input matInput type="text" formControlName="comentaSatje">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="col-span-2">
+        <mat-label>Obs. Generales</mat-label>
+        <input matInput type="text" formControlName="obsGenerales">
+        <mat-checkbox formControlName="nullObsGenerales">Null</mat-checkbox>
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+
+<style>
+  .main-container-bg {
+    background-color: #096d22;
+    min-height: 100vh;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    .md:grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

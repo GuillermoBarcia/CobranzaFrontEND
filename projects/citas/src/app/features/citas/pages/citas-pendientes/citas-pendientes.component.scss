@@ -20,3 +20,27 @@
   text-align: center !important;
   justify-content: center !important;
 }
+
+::ng-deep .fuse-confirmation-dialog {
+  .mat-mdc-dialog-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  textarea {
+    min-height: 120px !important;
+    resize: vertical;
+  }
+
+  .mat-mdc-dialog-actions {
+    justify-content: flex-end;
+
+    button.mat-mdc-button-base.mat-warn {
+      background-color: #EB1B24;
+      color: white;
+      border-radius: 20px;
+      padding: 0 20px;
+    }
+  }
+}
+

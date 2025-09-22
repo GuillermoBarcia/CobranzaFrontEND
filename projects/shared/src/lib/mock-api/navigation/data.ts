@@ -4,13 +4,13 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 export const defaultNavigation: FuseNavigationItem[] = [
     {
         id: 'pages.authentication',
-        title: 'Logística',
+        title: 'Módulos Cobranza',
         type: 'collapsable',
         icon: 'heroicons_outline:truck',
         children: [
             {
                 id: 'pages.authentication.sign-in',
-                title: 'Citas',
+                title: 'Cobranza',
                 type: 'collapsable',
                 children: [
                     {

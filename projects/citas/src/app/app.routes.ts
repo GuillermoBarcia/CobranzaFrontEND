@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
 import { LoginPageComponent } from 'shared';
+import { NuevaCitaComponent } from './features/citas/pages/nueva-cita/nueva-cita.component';
 
 export const routes: Routes = [
     {
-        path: 'login',
-        component: LoginPageComponent,
+        path: 'nueva-cita',
+        component: NuevaCitaComponent,
     },
     {
         // pathMatch: 'full',

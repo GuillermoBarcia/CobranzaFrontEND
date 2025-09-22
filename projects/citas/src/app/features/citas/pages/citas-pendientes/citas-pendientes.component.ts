@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { SharedLibraryModule } from 'shared';
 import { Citas } from '../../../../../../../shared/src/lib/models/citas.model';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
 
 @Component({
   standalone: true,
@@ -52,4 +53,51 @@ export class CitasPendientesComponent {
         estado: 'Solicitado'
       },
     ]);
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+    constructor(
+      @Inject(FuseConfirmationService) private _fuseConfirmationService: FuseConfirmationService
+    ) {}
+
+    ngAfterViewInit() {
+      this.dataSource.paginator = this.paginator;
+    }
+
+
+    rechazarCita(cita: Citas): void {
+      const confirmation = this._fuseConfirmationService.open({
+        title: 'Detalle por qué rechaza la cita',
+        message: '',
+        form: {
+          campoObservacion: {
+            type: 'textarea',
+            label: 'Observación',
+            value: '',
+            validators: [],
+          }
+        },
+        actions: {
+          confirm: {
+            label: 'Guardar',
+            color: 'warn'
+          },
+          cancel: {
+            label: 'Cerrar'
+          }
+        },
+        dismissible: true,
+        icon: {
+          show: false
+        }
+      } as any); // ✅ esto permite usar 'form'
+
+
+      confirmation.afterClosed().subscribe((result: any) => {
+        if (result && result.campoObservacion) {
+          console.log('Cita rechazada:', cita.numeroConsolidacion);
+          console.log('Observación:', result.campoObservacion);
+          // Aquí podrías enviar la observación al backend si es necesario
+        }
+      });
+    }
 }
