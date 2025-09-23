@@ -2,19 +2,22 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SearchComponent } from './components/search/search.component';
+import { FuseDrawerComponent } from '@fuse/components/drawer';
 
 
 @NgModule({
     declarations: [
-      
+
       ],
       imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         BreadCrumbComponent,
-        LoginPageComponent
+    //     SearchComponent,
+    // FuseDrawerComponent
+
       ],
       exports: [
         // Angular Modules
@@ -22,10 +25,11 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
         FormsModule,
         ReactiveFormsModule,
         BreadCrumbComponent,
-        LoginPageComponent
+    //     SearchComponent,
+    // FuseDrawerComponent
       ]
 })
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class SharedLibraryModule {
- 
+
 }

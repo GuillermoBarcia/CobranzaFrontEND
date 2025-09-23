@@ -1,93 +1,102 @@
 {
-    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-    "version": 1,
-    "newProjectRoot": "projects",
-    "projects": {
-        "shell": {
-            "projectType": "application",
-            "schematics": {
-                "@schematics/angular:component": {
-                    "style": "scss"
-                }
-            },
-            "root": "projects/shell",
-            "sourceRoot": "projects/shell/src",
-            "prefix": "app",
-            "architect": {
-                "build": {
-                    "builder": "@angular-architects/native-federation:build",
-                    "options": {},
-                    "configurations": {
-                        "production": {
-                            "target": "shell:esbuild:production"
-                        },
-                        "development": {
-                            "target": "shell:esbuild:development",
-                            "dev": true
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "serve": {
-                    "builder": "@angular-architects/native-federation:build",
-                    "options": {
-                        "target": "shell:serve-original:development",
-                        "rebuildDelay": 0,
-                        "dev": true,
-                        "port": 0
-                    }
-                },
-                "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n"
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "polyfills": ["zone.js", "zone.js/testing"],
-                        "tsConfig": "projects/shell/tsconfig.spec.json",
-                        "inlineStyleLanguage": "scss",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "projects/shell/public"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "projects/theme/src/assets",
-                                "output": "/assets/theme/"
-                            }
-                        ],
-                        "styles": ["projects/shell/src/styles.scss"],
-                        "scripts": []
-                    }
-                },
-                "esbuild": {
-                    "builder": "@angular-devkit/build-angular:application",
-                    "options": {
-                        "outputPath": "dist/shell",
-                        "index": "projects/shell/src/index.html",
-                        "browser": "projects/shell/src/main.ts",
-                        "polyfills": ["zone.js", "es-module-shims"],
-                        "tsConfig": "projects/shell/tsconfig.app.json",
-                        "inlineStyleLanguage": "scss",
-                        "allowedCommonJsDependencies": [
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"shell": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "projects/shell",
+			"sourceRoot": "projects/shell/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {},
+					"configurations": {
+						"production": {
+							"target": "shell:esbuild:production"
+						},
+						"development": {
+							"target": "shell:esbuild:development",
+							"dev": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {
+						"target": "shell:serve-original:development",
+						"rebuildDelay": 0,
+						"dev": true,
+						"port": 0
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"polyfills": [
+							"zone.js",
+							"zone.js/testing"
+						],
+						"tsConfig": "projects/shell/tsconfig.spec.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/shell/public"
+							}, 
+							{
+								"glob": "**/*",
+								"input": "projects/theme/src/assets",
+								"output": "/assets/theme/"
+							}
+
+						],
+						"styles": [
+							"projects/shell/src/styles.scss"
+						],
+						"scripts": []
+					}
+				},
+				"esbuild": {
+					"builder": "@angular-devkit/build-angular:application",
+					"options": {
+						"outputPath": "dist/shell",
+						"index": "projects/shell/src/index.html",
+						"browser": "projects/shell/src/main.ts",
+						"polyfills": [
+							"zone.js",
+							"es-module-shims"
+						],
+						"tsConfig": "projects/shell/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"allowedCommonJsDependencies": [
                             "apexcharts",
                             "crypto-js/enc-utf8",
                             "crypto-js/hmac-sha256",
                             "crypto-js/enc-base64",
                             "quill-delta"
                         ],
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "projects/shell/public"
-                            }
-                        ],
-                        "stylePreprocessorOptions": {
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/shell/public"
+							}
+						],
+						"stylePreprocessorOptions": {
                             "includePaths": ["projects/theme/src/@fuse/styles"]
                         },
-                        "styles": [
-                            "projects/theme/src/styles/splash-screen.css",
+						"styles": [
+							"projects/theme/src/styles/splash-screen.css",
                             "projects/theme/src/styles/inter.css",
                             "projects/theme/src/@fuse/styles/tailwind.scss",
                             "projects/theme/src/@fuse/styles/themes.scss",
@@ -95,130 +104,137 @@
                             "projects/theme/src/@fuse/styles/main.scss",
                             "projects/theme/src/styles/styles.scss",
                             "projects/theme/src/styles/tailwind.scss",
-                            "projects/shell/src/styles.scss"
-                        ],
-                        "scripts": []
-                    },
-                    "configurations": {
-                        "production": {
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2MB",
-                                    "maximumError": "5MB"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "200kB",
-                                    "maximumError": "500kB"
-                                }
-                            ],
-                            "outputHashing": "all"
-                        },
-                        "development": {
-                            "optimization": false,
-                            "extractLicenses": false,
-                            "sourceMap": true
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "serve-original": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
-                    "configurations": {
-                        "production": {
-                            "buildTarget": "shell:esbuild:production"
-                        },
-                        "development": {
-                            "buildTarget": "shell:esbuild:development"
-                        }
-                    },
-                    "defaultConfiguration": "development",
-                    "options": {
-                        "port": 4200,
-                        "host": "0.0.0.0"
-                    }
-                }
-            }
-        },
-        "citas": {
-            "projectType": "application",
-            "schematics": {
-                "@schematics/angular:component": {
-                    "style": "scss"
-                }
-            },
-            "root": "projects/citas",
-            "sourceRoot": "projects/citas/src",
-            "prefix": "app",
-            "architect": {
-                "build": {
-                    "builder": "@angular-architects/native-federation:build",
-                    "options": {},
-                    "configurations": {
-                        "production": {
-                            "target": "citas:esbuild:production"
-                        },
-                        "development": {
-                            "target": "citas:esbuild:development",
-                            "dev": true
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "serve": {
-                    "builder": "@angular-architects/native-federation:build",
-                    "options": {
-                        "target": "citas:serve-original:development",
-                        "rebuildDelay": 0,
-                        "dev": true,
-                        "port": 0
-                    }
-                },
-                "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n"
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "polyfills": ["zone.js", "zone.js/testing"],
-                        "tsConfig": "projects/citas/tsconfig.spec.json",
-                        "inlineStyleLanguage": "scss",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "projects/citas/public"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "projects/theme/src/assets",
-                                "output": "/assets/theme/"
-                            }
-                        ],
-                        "styles": ["projects/citas/src/styles.scss"],
-                        "scripts": []
-                    }
-                },
-                "esbuild": {
-                    "builder": "@angular-devkit/build-angular:application",
-                    "options": {
-                        "outputPath": "dist/citas",
-                        "index": "projects/citas/src/index.html",
-                        "browser": "projects/citas/src/main.ts",
-                        "polyfills": ["zone.js", "es-module-shims"],
-                        "tsConfig": "projects/citas/tsconfig.app.json",
-                        "inlineStyleLanguage": "scss",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "projects/citas/public"
-                            }
-                        ],
-                        "stylePreprocessorOptions": {
+							"projects/shell/src/styles.scss"
+						],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "4kB",
+									"maximumError": "8kB"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve-original": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"buildTarget": "shell:esbuild:production"
+						},
+						"development": {
+							"buildTarget": "shell:esbuild:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4200
+					}
+				}
+			}
+		},
+		"citas": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "projects/citas",
+			"sourceRoot": "projects/citas/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {},
+					"configurations": {
+						"production": {
+							"target": "citas:esbuild:production"
+						},
+						"development": {
+							"target": "citas:esbuild:development",
+							"dev": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {
+						"target": "citas:serve-original:development",
+						"rebuildDelay": 0,
+						"dev": true,
+						"port": 0
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"polyfills": [
+							"zone.js",
+							"zone.js/testing"
+						],
+						"tsConfig": "projects/citas/tsconfig.spec.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/citas/public"
+							},
+							{
+								"glob": "**/*",
+								"input": "projects/theme/src/assets",
+								"output": "/assets/theme/"
+							}
+						],
+						"styles": [
+							"projects/citas/src/styles.scss"
+						],
+						"scripts": []
+					}
+				},
+				"esbuild": {
+					"builder": "@angular-devkit/build-angular:application",
+					"options": {
+						"outputPath": "dist/citas",
+						"index": "projects/citas/src/index.html",
+						"browser": "projects/citas/src/main.ts",
+						"polyfills": [
+							"zone.js",
+							"es-module-shims"
+						],
+						"tsConfig": "projects/citas/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/citas/public"
+							}
+						],
+						"stylePreprocessorOptions": {
                             "includePaths": ["projects/theme/src/@fuse/styles"]
                         },
-                        "styles": [
-                            "projects/theme/src/styles/splash-screen.css",
+						"styles": [
+							"projects/theme/src/styles/splash-screen.css",
                             "projects/theme/src/styles/inter.css",
                             "projects/theme/src/@fuse/styles/tailwind.scss",
                             "projects/theme/src/@fuse/styles/themes.scss",
@@ -226,244 +242,119 @@
                             "projects/theme/src/@fuse/styles/main.scss",
                             "projects/theme/src/styles/styles.scss",
                             "projects/theme/src/styles/tailwind.scss",
-                            "projects/citas/src/styles.scss"
-                        ],
-                        "scripts": []
-                    },
-                    "configurations": {
-                        "production": {
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2MB",
-                                    "maximumError": "5MB"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "800kB",
-                                    "maximumError": "1.5MB"
-                                }
-                            ],
-                            "outputHashing": "all"
-                        },
-                        "development": {
-                            "optimization": false,
-                            "extractLicenses": false,
-                            "sourceMap": true
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "serve-original": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
-                    "configurations": {
-                        "production": {
-                            "buildTarget": "citas:esbuild:production"
-                        },
-                        "development": {
-                            "buildTarget": "citas:esbuild:development"
-                        }
-                    },
-                    "defaultConfiguration": "development",
-                    "options": {
-                        "port": 4201,
-                        "host": "0.0.0.0"
-                    }
-                }
-            }
-        },
-        "security": {
-            "projectType": "application",
-            "schematics": {
-                "@schematics/angular:component": {
-                    "style": "scss"
-                }
-            },
-            "root": "projects/security",
-            "sourceRoot": "projects/security/src",
-            "prefix": "app",
-            "architect": {
-                "build": {
-                    "builder": "@angular-architects/native-federation:build",
-                    "options": {},
-                    "configurations": {
-                        "production": {
-                            "target": "security:esbuild:production"
-                        },
-                        "development": {
-                            "target": "security:esbuild:development",
-                            "dev": true
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "serve": {
-                    "builder": "@angular-architects/native-federation:build",
-                    "options": {
-                        "target": "security:serve-original:development",
-                        "rebuildDelay": 0,
-                        "dev": true,
-                        "port": 0
-                    }
-                },
-                "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n"
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "polyfills": ["zone.js", "zone.js/testing"],
-                        "tsConfig": "projects/security/tsconfig.spec.json",
-                        "inlineStyleLanguage": "scss",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "projects/security/public"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "projects/theme/src/assets",
-                                "output": "/assets/theme/"
-                            }
-                        ],
-                        "styles": ["projects/security/src/styles.scss"],
-                        "scripts": []
-                    }
-                },
-                "esbuild": {
-                    "builder": "@angular-devkit/build-angular:application",
-                    "options": {
-                        "outputPath": "dist/security",
-                        "index": "projects/security/src/index.html",
-                        "browser": "projects/security/src/main.ts",
-                        "polyfills": ["zone.js", "es-module-shims"],
-                        "tsConfig": "projects/security/tsconfig.app.json",
-                        "inlineStyleLanguage": "scss",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "projects/security/public"
-                            }
-                        ],
-                        "stylePreprocessorOptions": {
-                            "includePaths": ["projects/theme/src/@fuse/styles"]
-                        },
-                        "styles": [
-                            "projects/theme/src/styles/splash-screen.css",
-                            "projects/theme/src/styles/inter.css",
-                            "projects/theme/src/@fuse/styles/tailwind.scss",
-                            "projects/theme/src/@fuse/styles/themes.scss",
-                            "projects/theme/src/styles/vendors.scss",
-                            "projects/theme/src/@fuse/styles/main.scss",
-                            "projects/theme/src/styles/styles.scss",
-                            "projects/theme/src/styles/tailwind.scss",
-                            "projects/security/src/styles.scss"
-                        ],
-                        "scripts": []
-                    },
-                    "configurations": {
-                        "production": {
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2MB",
-                                    "maximumError": "5MB"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "40kB",
-                                    "maximumError": "90kB"
-                                }
-                            ],
-                            "outputHashing": "all"
-                        },
-                        "development": {
-                            "optimization": false,
-                            "extractLicenses": false,
-                            "sourceMap": true
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "serve-original": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
-                    "configurations": {
-                        "production": {
-                            "buildTarget": "security:esbuild:production"
-                        },
-                        "development": {
-                            "buildTarget": "security:esbuild:development"
-                        }
-                    },
-                    "defaultConfiguration": "development",
-                    "options": {
-                        "port": 4202
-                    }
-                }
-            }
-        },
-        "shared": {
-            "projectType": "library",
-            "root": "projects/shared",
-            "sourceRoot": "projects/shared/src",
-            "prefix": "lib",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "project": "projects/shared/ng-package.json"
-                    },
-                    "configurations": {
-                        "production": {
-                            "tsConfig": "projects/shared/tsconfig.lib.prod.json"
-                        },
-                        "development": {
-                            "tsConfig": "projects/shared/tsconfig.lib.json"
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "tsConfig": "projects/shared/tsconfig.spec.json",
-                        "polyfills": ["zone.js", "zone.js/testing"]
-                    }
-                }
-            }
-        },
-        "theme": {
-            "projectType": "library",
-            "root": "projects/theme",
-            "sourceRoot": "projects/theme/src",
-            "prefix": "lib",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "project": "projects/theme/ng-package.json"
-                    },
-                    "configurations": {
-                        "production": {
-                            "tsConfig": "projects/theme/tsconfig.lib.prod.json"
-                        },
-                        "development": {
-                            "tsConfig": "projects/theme/tsconfig.lib.json"
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "tsConfig": "projects/theme/tsconfig.spec.json",
-                        "polyfills": ["zone.js", "zone.js/testing"]
-                    }
-                }
-            }
-        }
+							"projects/citas/src/styles.scss"
+						],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "4kB",
+									"maximumError": "8kB"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve-original": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"buildTarget": "citas:esbuild:production"
+						},
+						"development": {
+							"buildTarget": "citas:esbuild:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4201
+					}
+				}
+			}
     },
-    "cli": {
-        "analytics": "739c0a60-b910-469f-b2a4-d1ad780e33a1"
+    "shared": {
+      "projectType": "library",
+      "root": "projects/shared",
+      "sourceRoot": "projects/shared/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/shared/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/shared/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/shared/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/shared/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "theme": {
+      "projectType": "library",
+      "root": "projects/theme",
+      "sourceRoot": "projects/theme/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/theme/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/theme/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/theme/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/theme/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
+  },
+  "cli": {
+    "analytics": false
+  }
 }
