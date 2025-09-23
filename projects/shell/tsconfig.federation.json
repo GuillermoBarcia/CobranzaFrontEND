@@ -9,8 +9,7 @@
   ],
   "include": [
     "src/**/*.ts",
-    "src/**/*.d.ts",
-    "..\\shared\\src\\public-api.ts"
+    "src/**/*.d.ts"
   ],
   "exclude": [
     "**/*.spec.ts"
