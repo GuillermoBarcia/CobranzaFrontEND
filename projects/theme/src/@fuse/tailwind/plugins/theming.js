@@ -227,13 +227,10 @@ const theming = plugin.withOptions(
                     const foreground = theme(
                         `fuse.customProps.foreground.${colorScheme}`
                     );
-                    const lightSchemeSelectors =
-                        'body.light, .light, .dark .light';
-                    const darkSchemeSelectors =
-                        'body.dark, .dark, .light .dark';
+
 
                     return {
-                        [isDark ? darkSchemeSelectors : lightSchemeSelectors]: {
+                        [isDark ? 'body.dark, .dark, .light .dark' : 'body.light, .light, .dark .light']: {
                             /**
                              * If a custom property is not available, browsers will use
                              * the fallback value. In this case, we want to use '--is-dark'

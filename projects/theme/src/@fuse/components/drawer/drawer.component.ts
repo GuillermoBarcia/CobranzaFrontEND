@@ -49,12 +49,12 @@ export class FuseDrawerComponent implements OnChanges, OnInit, OnDestroy {
     private _fuseDrawerService = inject(FuseDrawerService);
     private _fuseUtilsService = inject(FuseUtilsService);
 
-    @Input() fixed: boolean = false;
+    @Input() fixed?: boolean = false;
     @Input() mode: FuseDrawerMode = 'side';
     @Input() name: string = this._fuseUtilsService.randomId();
-    @Input() opened: boolean = false;
+    @Input() opened?: boolean = false;
     @Input() position: FuseDrawerPosition = 'left';
-    @Input() transparentOverlay: boolean = false;
+    @Input() transparentOverlay?: boolean = false;
     @Output() readonly fixedChanged: EventEmitter<boolean> =
         new EventEmitter<boolean>();
     @Output() readonly modeChanged: EventEmitter<FuseDrawerMode> =
@@ -64,9 +64,9 @@ export class FuseDrawerComponent implements OnChanges, OnInit, OnDestroy {
     @Output() readonly positionChanged: EventEmitter<FuseDrawerPosition> =
         new EventEmitter<FuseDrawerPosition>();
 
-    private _animationsEnabled: boolean = false;
+    private _animationsEnabled?: boolean = false;
     private readonly _handleOverlayClick = (): void => this.close();
-    private _hovered: boolean = false;
+    private _hovered?: boolean = false;
     private _overlay?: HTMLElement | null;
     private _player?: AnimationPlayer;
 
@@ -77,6 +77,7 @@ export class FuseDrawerComponent implements OnChanges, OnInit, OnDestroy {
     /**
      * Host binding for component classes
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @HostBinding('class') get classList(): any {
         /* eslint-disable @typescript-eslint/naming-convention */
         return {
@@ -93,6 +94,7 @@ export class FuseDrawerComponent implements OnChanges, OnInit, OnDestroy {
     /**
      * Host binding for component inline styles
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @HostBinding('style') get styleList(): any {
         return {
             visibility: this.opened ? 'visible' : 'hidden',

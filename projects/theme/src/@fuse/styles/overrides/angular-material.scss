@@ -347,9 +347,7 @@
         /* Select */
         .mat-mdc-select {
             /* Placeholder color */
-            .mat-mdc-select-placeholder {
-                @apply text-warn #{'!important'};
-            }
+            
         }
     }
 
@@ -502,21 +500,7 @@
                     display: flex;
                     align-items: center;
 
-                    &:focus {
-                        .mat-mdc-select-trigger {
-                            .mat-mdc-select-value {
-                                @apply text-primary #{'!important'};
-                            }
-
-                            .mat-mdc-select-arrow-wrapper {
-                                .mat-mdc-select-arrow {
-                                    border-top-color: var(
-                                        --fuse-primary
-                                    ) !important;
-                                }
-                            }
-                        }
-                    }
+                   
 
                     .mat-mdc-select-trigger {
                         display: flex;
@@ -977,21 +961,7 @@
 .mat-form-field-invalid {
     .mat-mdc-input-element {
         /* Placeholder color */
-        &::placeholder {
-            @apply text-warn #{'!important'};
-        }
-
-        &::-moz-placeholder {
-            @apply text-warn #{'!important'};
-        }
-
-        &::-webkit-input-placeholder {
-            @apply text-warn #{'!important'};
-        }
-
-        &:-ms-input-placeholder {
-            @apply text-warn #{'!important'};
-        }
+       
     }
 }
 
@@ -1102,14 +1072,14 @@
         }
     }
 
-    .mat-mdc-select-arrow-wrapper {
-        transform: translateY(0) !important;
+    // .mat-mdc-select-arrow-wrapper {
+    //     transform: translateY(0) !important;
 
-        .mat-mdc-select-arrow {
-            margin: 0 0 0 8px;
-            @apply text-secondary #{!important};
-        }
-    }
+    //     .mat-mdc-select-arrow {
+    //         margin: 0 0 0 8px;
+    //         @apply text-secondary #{!important};
+    //     }
+    // }
 }
 
 /* -------------------------------------------------------------------------- */

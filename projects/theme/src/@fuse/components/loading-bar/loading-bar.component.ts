@@ -25,10 +25,11 @@ import { Subject, takeUntil } from 'rxjs';
 export class FuseLoadingBarComponent implements OnChanges, OnInit, OnDestroy {
     private _fuseLoadingService = inject(FuseLoadingService);
 
-    @Input() autoMode: boolean = true;
+    @Input() autoMode = true;
     mode?: 'determinate' | 'indeterminate';
     progress?: number | null = 0;
-    show: boolean = false;
+    show = false;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     // -----------------------------------------------------------------------------------------------------

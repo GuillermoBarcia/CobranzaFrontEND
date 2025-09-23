@@ -103,6 +103,6 @@ export class FuseHorizontalNavigationBranchItemComponent
      * @param item
      */
     trackByFn(index: number, item: any): any {
-        return item.id || index;
+        return item.id ?? index;
     }
 }

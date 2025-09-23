@@ -1,39 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { BreadCrumbComponent } from "shared";
-import { MatFormField, MatFormFieldModule, MatLabel } from "@angular/material/form-field";
-import { MatOption } from "@angular/material/core";
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-prestamos-judiciales-detalle',
-  imports: [ReactiveFormsModule,
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
     BreadCrumbComponent,
-    MatFormField, MatLabel,
-     MatOption,
-       MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatSelectModule,
     MatFormFieldModule,
-    MatDatepickerModule
-    ],
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    RouterModule
+  ],
   templateUrl: './prestamos-judiciales-detalle.component.html',
   styleUrl: './prestamos-judiciales-detalle.component.scss'
 })
 export class PrestamosJudicialesDetalleComponent implements OnInit {
-  prestamosJudicialesForm!: FormGroup; // Use definite assignment assertion
+  prestamosJudicialesForm!: FormGroup;
 
   constructor(private fb: FormBuilder) {
     this.initializeForm();
   }
 
   ngOnInit() {
-    // Ensure form is initialized before the view loads
     if (!this.prestamosJudicialesForm) {
       this.initializeForm();
     }
@@ -41,19 +44,19 @@ export class PrestamosJudicialesDetalleComponent implements OnInit {
 
   private initializeForm(): void {
     this.prestamosJudicialesForm = this.fb.group({
-      pagare: [''],
-      abogado: [''],
+      pagare: ['62723'],
+      abogado: ['BOCANGEL BALTazar VICTOR DANIEL'],
       fechaEntregaExpediente: [null],
       nullFechaEntregaExpediente: [false],
       valorCuantia: [''],
-      tramite: [''],
+      tramite: ['CREDIMIGO TRANSPORTISTA'],
       medPrevent: [''],
       cubremeCautelar: [''],
       canton: [''],
       causa: [''],
       fechaUltDilig: [null],
       depositoGestion: [''],
-      sugerAbogado: [false],
+      sugerAbogado: [''],
       deudor: [''],
       fechaCompromisoMora: [null],
       nullFechaCompromisoMora: [false],
@@ -67,7 +70,15 @@ export class PrestamosJudicialesDetalleComponent implements OnInit {
       accionRealizada: [''],
       comentaSatje: [''],
       obsGenerales: [''],
-      nullObsGenerales: [false]
+      detproxgestion: [''],
+      nullObsGenerales: [false],
+      numeroPrestamo: ['62723'], // Nuevo campo
+      oficina: ['MAYORISTA'], // Nuevo campo
+      tipo: ['CREDIMIGO TRANSPORTISTA'], // Nuevo campo
+      salidaUltimoPago: ['14/08/2024'], // Nuevo campo
+      proximoVencimiento: ['08/08/2024'], // Nuevo campo
+      saldoPrestamo: ['51010.48'], // Nuevo campo
+      saldoActual: ['51010.48'] // Nuevo campo
     });
   }
 }

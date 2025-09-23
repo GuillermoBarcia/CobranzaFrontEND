@@ -8,6 +8,7 @@ import { CitasPendientesComponent } from './pages/citas-pendientes/citas-pendien
 import { AprobarSolicitudDebitoCuentaComponent } from './pages/aprobar-solicitud-debito-cuenta/aprobar-solicitud-debito-cuenta.component';
 import { PrestamosJudicialesComponent } from './pages/prestamos-judiciales/prestamos-judiciales.component';
 import { PrestamosJudicialesDetalleComponent } from './pages/prestamos-judiciales-detalle/prestamos-judiciales-detalle.component';
+import { CrearCargoComponent } from './pages/crear-cargo/crear-cargo.component';
 
 export const citasRoute: Routes = [
 
@@ -39,8 +40,12 @@ export const citasRoute: Routes = [
     path: 'prestamos-judiciales',
     component: PrestamosJudicialesComponent,
   },
-   {
-    path: 'prestamos-judiciales-detalle',
-    component: PrestamosJudicialesDetalleComponent,
-  },
+  {
+  path: 'prestamos-judiciales/detalle/:id',
+  component: PrestamosJudicialesDetalleComponent,
+},
+{
+  path: 'prestamos-judiciales/crear-cargo/:id',
+  component: CrearCargoComponent
+}
 ];

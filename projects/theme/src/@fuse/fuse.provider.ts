@@ -84,7 +84,7 @@ export const provideFuse = (
         providers.push(
             provideHttpClient(withInterceptors([mockApiInterceptor])),
             provideAppInitializer(() => {
-                const mockApiService = inject(config.mockApi?.service);
+            inject(config.mockApi?.service);
             })
         );
     }

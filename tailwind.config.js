@@ -67,7 +67,12 @@ const themes = {
  */
 const config = {
     darkMode: ['selector', '.dark'],
-    content: ['./projects/**/*.{html,scss,ts}'],
+    // content: ['./projects/**/*.{html,scss,ts}'],
+    content: [
+        './projects/**/*.{html,scss,ts}',
+        './projects/theme/src/**/*.{html,scss,ts}',
+        './projects/shared/src/**/*.{html,scss,ts}',
+    ],
     important: true,
     theme: {
         fontSize: {

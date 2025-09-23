@@ -1,0 +1,705 @@
+@use "@angular/material" as mat;
+@use "variables" as vars;
+
+@mixin apply-material-theme {
+  html {
+    color-scheme: light;
+  @include mat.theme((
+    typography: (
+      plain-family: Roboto,
+      brand-family: Open Sans,
+      bold-weight: 900,
+      medium-weight: 500,
+      regular-weight: 300,
+    ),
+    density: 0
+  ));
+
+
+  // ---- estos includes son de la sección de overrides de estilos de cada componente
+  // según la documentación oficial de la última versión de angular material
+  // puede ser que algunos de estos sean sobreescritos directamente por las clases  
+  // Componentes de tabla
+  @include mat.table-overrides((
+    background-color: var(--color-neutral-light),
+    header-headline-color: var (--color-secondary),
+    row-item-label-text-color: var(--color-neutral-dark),
+    row-item-outline-color: var(--color-form-border-subtle),
+    row-item-outline-width: 1px,
+    header-container-height: 48px,
+    row-item-container-height: 52px,
+  ));
+
+  @include mat.tooltip-overrides((
+    container-color: var(--color-neutral-light),
+    supporting-text-color: var(--color-neutral-dark),
+  ));
+
+  // Componentes de control de formulario - Keep this for base token overrides
+  @include mat.form-field-overrides((
+    // Tokens de texto y color
+    error-text-color: var(--color-error),
+    outlined-error-outline-color: var(--color-error),
+    filled-error-active-indicator-color: var(--color-error),
+
+    // Estados de enfoque - These might be overridden below, but good to keep
+    outlined-focus-outline-color: var(--color-active),
+    filled-focus-active-indicator-color: var(--color-active), // Note: Filled uses indicator, not outline
+
+    // Estados deshabilitados
+    outlined-disabled-label-text-color: var(--color-disable),
+    filled-disabled-label-text-color: var(--color-disable),
+    disabled-input-text-placeholder-color: var(--color-text-disabled),
+
+    // Estados normales - Base outline color
+    outlined-outline-color: var(--color-form-border-subtle),
+
+    
+    filled-active-indicator-color: var(--color-action-active), // color para indicador activo
+    filled-active-indicator-height: 0px, // esconder el indicador activo
+  ));
+
+  @include mat.datepicker-overrides((
+    calendar-container-background-color: var(--color-neutral-light),
+    calendar-date-selected-state-text-color: var(--color-neutral-light),
+    calendar-date-selected-state-background-color: var(--color-secondary),
+    calendar-date-today-outline-color: var(--color-active),
+    calendar-body-label-text-color: var(--color-neutral-dark),
+    calendar-header-text-color: var(--color-secondary),
+    calendar-navigation-button-icon-color: var(--color-active),
+    calendar-period-button-text-color: var(--color-secondary),
+  ));
+  
+  // Componentes de botón
+  @include mat.button-overrides((
+    filled-container-color: var(--color-primary),
+    filled-label-text-color: var(--color-neutral-light),
+    outlined-outline-color: var(--color-form-border-subtle),
+    outlined-label-text-color: var(--color-primary),
+    outlined-disabled-label-text-color: var(--color-disable),
+    text-disabled-label-text-color: var(--color-text-disabled),
+  ));
+  
+  @include mat.select-overrides((
+    arrow-transform: none,
+  ));
+  
+    // Estilo de componente específico adicional para alertas
+    .mat-mdc-snack-bar-container {
+      &.success-snackbar {
+        --mdc-snackbar-container-color: var(--color-positive);
+        --mdc-snackbar-supporting-text-color: var(--color-neutral-light);
+      }
+      
+      &.error-snackbar {
+        --mdc-snackbar-container-color: var(--color-error);
+        --mdc-snackbar-supporting-text-color: var(--color-neutral-light);
+      }
+      
+      &.warning-snackbar {
+        --mdc-snackbar-container-color: var(--color-warning);
+        --mdc-snackbar-supporting-text-color: var(--color-neutral-dark);
+      }
+    }
+  }
+
+  .mat-mdc-raised-button:not(:disabled) .mat-primary {
+    --mdc-filled-button-container-color: var(--color-primary);
+    --mdc-filled-button-label-text-color: var(--color-neutral-light);
+  }
+
+  .mat-calendar {
+    background-color: var(--color-neutral-light) !important;
+  }
+
+  div.mat-mdc-autocomplete-panel {
+    background-color: var(--color-neutral-light) !important;
+  }
+
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    padding: 0px !important;
+  }
+
+
+
+  // -------- TABLAS -----------
+  // cabecera
+  .mat-mdc-header-cell {
+    background-color: var(--color-primary) !important;
+    color: var(--color-neutral-light) !important;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-grey) 50%, transparent) !important;
+    padding: 16px;
+  }
+
+  .mat-mdc-cell {
+    background-color: var(--color-neutral-light) !important;
+    color: var(--color-neutral-dark) !important;
+    padding-top: 16px;
+    padding-right: 4px;
+    padding-bottom: 16px;
+    padding-left: 4px;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-grey) 50%, transparent) !important;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    background-color: color-mix(in srgb, var(--color-selected) 10%, transparent) !important;
+  }
+
+  // -------- CAMPOS DE ENTRADA -----------
+  .mat-mdc-form-field {
+    width: 100%;
+    margin-bottom: 8px;
+
+    // explicitamente manejar el estilo de un label cuando se usa como "placeholder" (no flotante)
+    .mat-mdc-form-field-label-wrapper {
+      .mat-mdc-form-field-label:not(.mdc-floating-label--float-above) {
+        color: var(--color-grey) !important; 
+        opacity: 1 !important;
+      }
+    }
+
+    // estilos de texto de error - para el contenedor de la etiqueta 
+    &.mat-form-field-invalid {
+      .mat-error, .mat-mdc-form-field-error {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 166%;
+        letter-spacing: 0.4px;
+        color: var(--color-error);
+        padding: 3px 14px 0px;
+        margin-top: 0;
+      }
+    }
+
+    // estado deshabilitado - para el contenedor de la etiqueta 
+    &.mat-form-field-disabled {
+      .mat-mdc-text-field-wrapper {
+         // para relleno
+         border-color: var(--color-form-border-subtle) !important;
+         background-color: var(--color-bg) !important;
+
+         // para outlines
+         .mdc-notched-outline {
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+                border-color: var(--color-form-border-subtle) !important; // color default de borde
+            }
+         }
+
+         .mat-mdc-form-field-flex {
+            background-color: var(--color-bg); // color de fondo para deshabilitado
+         }
+
+         .mat-mdc-form-field-infix {
+            color: var(--color-disable); // color deshabilitado para el texto
+         }
+      }
+       .mat-mdc-form-field-label-wrapper .mat-mdc-form-field-label {
+            color: var(--color-disable); // color deshabilitado para el placeholder
+       }
+    }
+
+    // toggle del datepicker
+    .mat-datepicker-toggle {
+      color: var(--color-grey);
+
+      // se usen las reglas y sobreescriban correctamente los estilos de Fuse
+      .mat-form-field-appearance-fill.mat-focused &,
+      .mat-form-field-appearance-outline.mat-focused & {
+         color: var(--color-active);
+      }
+    }
+
+    // altura de envoltorio de subscript
+    .mat-mdc-form-field-subscript-wrapper {
+      min-height: 20px; // ajustar a la altura de línea del texto de error
+    }
+  }
+  
+  // Estilo de flecha desplegable del select
+  .mat-mdc-select-arrow {
+    color: color-mix(in srgb, var(--color-action-active) 56%, transparent) !important;
+  }
+
+  div.mat-mdc-select-panel {
+    background-color: var(--color-neutral-light) !important;
+  }
+
+  .mat-mdc-option.mdc-list-item {
+    background-color: var(--color-neutral-light) !important;
+    color: var(--color-neutral-dark) !important;
+  }
+
+  // opcion de seleccion en hover, tambien aplica para los items en hover y enfocados
+.mat-mdc-option.mdc-list-item:hover,
+.mat-mdc-option:focus.mdc-list-item:hover, 
+.mat-mdc-option.mat-mdc-option-active.mdc-list-item:hover {
+  background-color: color-mix(in srgb, var(--color-active) 20%, var(--color-neutral-light)) !important;
+}
+
+
+.mat-mdc-option:focus.mdc-list-item, 
+.mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+  background-color: color-mix(in srgb, var(--color-active) 10%, transparent) !important;
+}
+
+  .mat-form-field-hide-placeholder .mat-mdc-select-placeholder {
+    color: var(--color-grey) !important;
+    -webkit-text-fill-color: var(--color-grey) !important;
+  }
+  
+  // Estilo de input
+  .mat-mdc-input-element {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: var(--color-neutral-dark); // color del texto del input actual
+
+    // asegurarse que los estilos nativos del input no interfieran
+    &::placeholder {
+      color: var(--color-grey) !important; // usar color placeholder
+      opacity: 1 !important; // asegurar opacidad completa
+      // la siguiente sentencia es para navegadores que no soportan el color de placeholder
+      -webkit-text-fill-color: var(--color-grey) !important;
+    }
+
+    &:disabled {
+      color: var(--color-neutral-dark);
+      &::placeholder {
+        color: var(--color-grey) !important; // ajustar el color del placeholder cuando esté deshabilitado
+        opacity: 1 !important; // opcional: reduce la opacidad para el placeholder deshabilitado
+        -webkit-text-fill-color: var(--color-grey) !important;
+      }
+    }
+  }
+
+  // ajustes en labels flotantes no editables / deshabilitados
+  .mat-mdc-form-field.mat-form-field-disabled .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mdc-floating-label {
+    color: var(--color-neutral-dark) !important; // color del label flotante deshabilitado
+  }
+  .mdc-text-field--filled.mdc-text-field--disabled .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mdc-floating-label {
+    color: var(--color-neutral-dark) !important; // color del label flotante deshabilitado
+  }
+
+  // ajustes en valores de inputs no editables / deshabilitados
+  .mdc-text-field--filled.mdc-text-field--disabled .mdc-text-field__input {
+    color: var(--color-neutral-dark) !important; // color del texto del input deshabilitado
+  }
+
+  // Ajustes específicos de datepicker dentro de mat-form-field
+  .mat-datepicker-toggle {
+    color: var(--color-grey);
+    display: flex;
+    align-items: center;
+    
+    &-default-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  // Estilos de área de texto (extendiendo estilos de input)
+  .mat-mdc-form-field-textarea-control {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: var(--color-neutral-dark);
+    
+    // asegurar que el color del texto sea el correcto
+    &::placeholder {
+      color: var(--color-grey) !important; // usar el color del placeholder
+      opacity: 1 !important; // asegurar la opacidad completa
+      -webkit-text-fill-color: var(--color-grey) !important;
+    }
+
+    &:disabled {
+       // opcional: agregar estilo para el placeholder del textarea
+       &::placeholder {
+         color: var(--color-disable) !important;
+         opacity: 1 !important;
+         -webkit-text-fill-color: var(--color-disable) !important;
+       }
+    }
+  }
+
+  // Estilo de etiqueta flotante para campos de formulario - ESTADO ACTIVO DE ETIQUETA
+  .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mat-mdc-floating-label {
+    color: var(--color-active) !important;
+    caret-color: var(--color-active) !important;
+  }
+  // Estilo de etiqueta externa (para etiquetas fuera de campos de formulario / que no se encuentren en un mat-for-field)
+  .input-label {
+    color: var(--color-neutral-dark);
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+    display: block;
+    line-height: 1.2;
+    
+    &.active {
+      color: var(--color-active);
+    }
+    
+    &.error {
+      color: var(--color-error);
+    }
+    
+    &.disabled {
+      color: var(--color-disable);
+    }
+  }
+
+  // -------- COMPONENTES DE MENÚ -----------
+  .mat-mdc-menu-panel {
+    background-color: var(--color-neutral-light) !important;
+    border-radius: 4px;
+    
+    box-shadow: var(--box-shadow-menu-dropdown) !important;
+    
+    
+    .mat-mdc-menu-content {
+      padding: 8px 0;
+    }
+    
+    .mat-mdc-menu-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 6px 16px;
+      height: 36px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.15px;
+      color: var(--color-neutral-dark);
+      
+      &:hover:not([disabled]) {
+        background-color: color-mix(in srgb, var(--color-neutral-light) 80%, var(--color-active));
+      }
+      
+      &.mat-mdc-menu-item-highlighted {
+        background-color: color-mix(in srgb, var(--color-neutral-light) 90%, var(--color-secondary));
+      }
+      
+      &[disabled] {
+        color: var(--color-disable);
+      }
+      
+      .mat-icon {
+        margin-right: 16px;
+      }
+      
+      .mdc-list-item__primary-text {
+        color: inherit;
+      }
+    }
+    
+    .mat-mdc-menu-divider {
+      margin: 4px 0;
+      height: 1px;
+      background-color: color-mix(in srgb, var(--color-grey) 30%, transparent);
+    }
+  }
+
+  body {
+    background: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+  }
+
+  // -------- DIALOG FORM FIELDS -----------
+  // Handle form fields within mat-dialog-container specifically
+  .mat-mdc-dialog-container,
+  .mdc-dialog.cdk-dialog-container,
+  .mat-mdc-dialog-container-with-actions {
+    // Override form field styles within dialogs to match regular form fields
+    .mat-mdc-form-field {
+      width: 100%;
+      margin-bottom: 8px;
+
+      // Copy the label wrapper styles from regular form fields
+      .mat-mdc-form-field-label-wrapper {
+        .mat-mdc-form-field-label:not(.mdc-floating-label--float-above) {
+          color: var(--color-grey) !important; 
+          opacity: 1 !important;
+        }
+      }
+
+      // Copy error styles from regular form fields
+      &.mat-form-field-invalid {
+        .mat-error, .mat-mdc-form-field-error {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 166%;
+          letter-spacing: 0.4px;
+          color: var(--color-error);
+          padding: 3px 14px 0px;
+          margin-top: 0;
+        }
+      }
+
+      // Copy disabled state styles from regular form fields
+      &.mat-form-field-disabled {
+        .mat-mdc-text-field-wrapper {
+           // para relleno
+           border-color: var(--color-form-border-subtle) !important;
+           background-color: var(--color-bg) !important;
+
+           // para outlines
+           .mdc-notched-outline {
+              .mdc-notched-outline__leading,
+              .mdc-notched-outline__notch,
+              .mdc-notched-outline__trailing {
+                  border-color: var(--color-form-border-subtle) !important;
+              }
+           }
+
+           .mat-mdc-form-field-flex {
+              background-color: var(--color-bg);
+           }
+
+           .mat-mdc-form-field-infix {
+              color: var(--color-disable);
+           }
+        }
+         .mat-mdc-form-field-label-wrapper .mat-mdc-form-field-label {
+              color: var(--color-disable);
+         }
+      }
+
+      // Ensure dialog form fields get the same styling as regular form fields
+      &.mat-form-field-appearance-outline {
+        .mat-mdc-text-field-wrapper {
+          background-color: var(--color-neutral-light) !important;
+          border-radius: 6px !important;
+        }
+
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch, 
+        .mdc-notched-outline__trailing {
+          border-color: var(--color-form-border-subtle) !important;
+        }
+
+        &.mat-focused:not(.mat-form-field-invalid) {
+          .mdc-notched-outline__leading,
+          .mdc-notched-outline__notch,
+          .mdc-notched-outline__trailing {
+            border-color: var(--color-active) !important;
+          }
+        }
+
+        &.mat-form-field-invalid {
+          .mdc-notched-outline__leading,
+          .mdc-notched-outline__notch,
+          .mdc-notched-outline__trailing {
+            border-color: var(--color-error) !important;
+          }
+        }
+      }
+
+      // Copy datepicker toggle styles
+      .mat-datepicker-toggle {
+        color: var(--color-grey);
+        display: flex;
+        align-items: center;
+        
+        &-default-icon {
+          width: 24px;
+          height: 24px;
+        }
+
+        // Focus state for datepicker toggle in dialogs
+        .mat-form-field-appearance-fill.mat-focused &,
+        .mat-form-field-appearance-outline.mat-focused & {
+           color: var(--color-active);
+        }
+      }
+
+      // Copy subscript wrapper height
+      .mat-mdc-form-field-subscript-wrapper {
+        min-height: 20px;
+      }
+    }
+
+    // Copy input element styles from regular form fields
+    .mat-mdc-input-element {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 0.15px;
+      color: var(--color-neutral-dark) !important;
+
+      &::placeholder {
+        color: var(--color-grey) !important;
+        opacity: 1 !important;
+        -webkit-text-fill-color: var(--color-grey) !important;
+      }
+
+      &:disabled {
+        color: var(--color-neutral-dark);
+        &::placeholder {
+          color: var(--color-grey) !important;
+          opacity: 1 !important;
+          -webkit-text-fill-color: var(--color-grey) !important;
+        }
+      }
+    }
+
+    // Copy textarea styles
+    .mat-mdc-form-field-textarea-control {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 0.15px;
+      color: var(--color-neutral-dark);
+      
+      &::placeholder {
+        color: var(--color-grey) !important;
+        opacity: 1 !important;
+        -webkit-text-fill-color: var(--color-grey) !important;
+      }
+
+      &:disabled {
+         &::placeholder {
+           color: var(--color-disable) !important;
+           opacity: 1 !important;
+           -webkit-text-fill-color: var(--color-disable) !important;
+         }
+      }
+    }
+
+    // Copy select styles
+    .mat-mdc-select {
+      .mat-mdc-select-value {
+        color: var(--color-neutral-dark) !important;
+      }
+      
+      .mat-mdc-select-placeholder {
+        color: var(--color-grey) !important;
+      }
+
+      .mat-mdc-select-arrow {
+        color: var(--color-grey) !important;
+      }
+    }
+
+    // Copy select arrow styles
+    .mat-mdc-select-arrow {
+      color: color-mix(in srgb, var(--color-action-active) 56%, transparent) !important;
+    }
+
+    // Copy placeholder styles
+    .mat-form-field-hide-placeholder .mat-mdc-select-placeholder {
+      color: var(--color-grey) !important;
+      -webkit-text-fill-color: var(--color-grey) !important;
+    }
+
+    // Copy floating label styles - ACTIVE STATE
+    .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mat-mdc-floating-label {
+      color: var(--color-active) !important;
+      caret-color: var(--color-active) !important;
+    }
+
+    // Copy floating label styles for outline appearance
+    .mat-mdc-form-field.mat-form-field-appearance-outline.mat-focused .mat-mdc-floating-label {
+      color: var(--color-active) !important;
+    }
+
+    // Label styling for dialogs
+    .mat-mdc-floating-label {
+      color: var(--color-neutral-dark) !important;
+
+      &.mdc-floating-label--float-above {
+        color: var(--color-active) !important;
+      }
+    }
+
+    // Copy disabled label styles
+    .mat-mdc-form-field.mat-form-field-disabled .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mdc-floating-label {
+      color: var(--color-neutral-dark) !important;
+    }
+    .mdc-text-field--filled.mdc-text-field--disabled .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mdc-floating-label {
+      color: var(--color-neutral-dark) !important;
+    }
+
+    // Copy disabled input styles
+    .mdc-text-field--filled.mdc-text-field--disabled .mdc-text-field__input {
+      color: var(--color-neutral-dark) !important;
+    }
+
+    // Button styling within dialogs
+    .mat-mdc-button {
+      border-radius: 6px !important;
+      font-weight: 500 !important;
+    }
+
+    .mat-mdc-raised-button {
+      border-radius: 6px !important;
+      font-weight: 500 !important;
+
+      &.mat-primary {
+        background-color: var(--color-primary) !important;
+        color: var(--color-neutral-light) !important;
+      }
+
+      &.mat-warn {
+        background-color: var(--color-error) !important;
+        color: var(--color-neutral-light) !important;
+      }
+    }
+
+    // Copy external label styles for consistency
+    .input-label {
+      color: var(--color-neutral-dark);
+      font-size: 14px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      display: block;
+      line-height: 1.2;
+      
+      &.active {
+        color: var(--color-active);
+      }
+      
+      &.error {
+        color: var(--color-error);
+      }
+      
+      &.disabled {
+        color: var(--color-disable);
+      }
+    }
+  }
+}
+
+// También asegurar que los paneles de select funcionen correctamente en los diálogos
+div.mat-mdc-select-panel {
+  background-color: var(--color-neutral-light) !important;
+
+  .mat-mdc-option.mdc-list-item {
+    background-color: var(--color-neutral-light) !important;
+    color: var(--color-neutral-dark) !important;
+  }
+
+  .mat-mdc-option.mdc-list-item:hover,
+  .mat-mdc-option:focus.mdc-list-item:hover, 
+  .mat-mdc-option.mat-mdc-option-active.mdc-list-item:hover {
+    background-color: color-mix(in srgb, var(--color-active) 20%, var(--color-neutral-light)) !important;
+  }
+
+  .mat-mdc-option:focus.mdc-list-item, 
+  .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+    background-color: color-mix(in srgb, var(--color-active) 10%, transparent) !important;
+  }
+}

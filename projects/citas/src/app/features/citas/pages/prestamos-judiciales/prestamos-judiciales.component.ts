@@ -39,7 +39,8 @@ displayedColumns: string[] = [
      'saldo',
      'nombreEstado',
      'estado',
-     'aprobar'
+     'detalle',
+     'cargo'
    ];
 
    dataSource = new MatTableDataSource<SolicitudDebitoCuenta>([
