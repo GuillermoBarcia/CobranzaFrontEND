@@ -1,12 +1,18 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import {  SharedLibraryModule } from "shared";
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import {  BreadCrumbComponent, SharedLibraryModule } from "shared";
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { CitasDialogService } from '../../services/citas-dialog.service';
 import { Sapcedi } from '../../../../../../../shared/src/lib/models/sapcedi.model';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { SearchComponent } from '../../../../shared/components/search/search.component';
 
 export interface SolicitudDebitoCuenta {
   numeroPagare: number;
@@ -23,11 +29,20 @@ export interface SolicitudDebitoCuenta {
   standalone: true,
   selector: 'app-aprobar-solicitud-debito-cuenta',
   imports: [CommonModule,
+    ReactiveFormsModule,
+    BreadCrumbComponent,
     RouterModule,
     MatPaginatorModule,
     MatTableModule,
     MatIconModule,
-    SharedLibraryModule],
+    SharedLibraryModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatDatepickerToggle,
+    SearchComponent
+  ],
   templateUrl: './aprobar-solicitud-debito-cuenta.component.html',
   styleUrl: './aprobar-solicitud-debito-cuenta.component.scss'
 })

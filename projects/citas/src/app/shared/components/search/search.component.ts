@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FuseDrawerComponent } from '@fuse/components/drawer';
 
-/**
+/**º
  * Componente Search
  * 
  * Componente reutilizable para búsqueda, con integración de drawer lateral para configuración u opciones adicionales.
@@ -15,21 +15,30 @@ import { FuseDrawerComponent } from '@fuse/components/drawer';
  */
 @Component({
   selector: 'lib-search',
-  standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
     MatIconModule,
+    FuseDrawerComponent,
     MatButtonModule,
     MatTooltipModule,
-    FuseDrawerComponent // Usa el módulo, no el componente
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
+  /**
+   * Evento emitido cuando se realiza la acción de búsqueda.
+   */
   @Output() search = new EventEmitter<void>();
-  @ViewChild('settingsDrawer') settingsDrawer?: FuseDrawerComponent; // Mantén esto para la referencia
 
+  /**
+   * Referencia al drawer de configuración (opcional).
+   */
+  @ViewChild('settingsDrawer') settingsDrawer?: FuseDrawerComponent;
+
+  /**
+   * Ejecuta la búsqueda y cierra el drawer si está abierto.
+   */
   onSearch(): void {
     this.search.emit();
     if (this.settingsDrawer) {

@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
     MatSelectModule,
     MatButtonModule,
     RouterModule
-  ],
+],
   templateUrl: './crear-cargo.component.html',
   styleUrls: ['./crear-cargo.component.scss']
 })

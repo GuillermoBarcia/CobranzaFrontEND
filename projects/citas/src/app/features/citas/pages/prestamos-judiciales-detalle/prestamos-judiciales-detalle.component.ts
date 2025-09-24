@@ -25,7 +25,7 @@ import { RouterModule } from '@angular/router';
     MatCheckboxModule,
     MatButtonModule,
     RouterModule
-  ],
+],
   templateUrl: './prestamos-judiciales-detalle.component.html',
   styleUrl: './prestamos-judiciales-detalle.component.scss'
 })

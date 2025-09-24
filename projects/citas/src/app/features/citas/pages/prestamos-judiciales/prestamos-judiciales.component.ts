@@ -4,8 +4,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { SharedLibraryModule } from 'shared';
+import { BreadCrumbComponent, SharedLibraryModule } from 'shared';
 import { CitasDialogService } from '../../services/citas-dialog.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { SearchComponent } from "../../../../shared/components/search/search.component";
 
 export interface SolicitudDebitoCuenta {
   numeroPagare: number;
@@ -20,11 +25,17 @@ export interface SolicitudDebitoCuenta {
 @Component({
   selector: 'app-prestamos-judiciales',
    imports: [CommonModule,
+    ReactiveFormsModule,
+    BreadCrumbComponent,
     RouterModule,
     MatPaginatorModule,
     MatTableModule,
     MatIconModule,
-    SharedLibraryModule
+    SharedLibraryModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    SearchComponent
   ],
   templateUrl: './prestamos-judiciales.component.html',
   styleUrl: './prestamos-judiciales.component.scss'

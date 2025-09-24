@@ -1,11 +1,9 @@
 <div
-    class="absolute left-0 flex h-10 w-10 cursor-pointer items-center justify-center rounded-r-lg main-brand-bg-secondary shadow-lg print:hidden"
-    style="z-index: 1000 !important;"
-    (click)="settingsDrawer.toggle()"
+  class="absolute left-0 flex h-10 w-10 cursor-pointer items-center justify-center rounded-r-lg bg-red-500 shadow-lg print:hidden"
+  style="z-index: 1000 !important;"
+  (click)="settingsDrawer.toggle()"
 >
-    <mat-icon
-        class="text-white icon-size-5"
-    >search</mat-icon>
+  <mat-icon class="text-white">search</mat-icon>
 </div>
 
 <fuse-drawer

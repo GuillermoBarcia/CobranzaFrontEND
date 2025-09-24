@@ -13,10 +13,49 @@ class="relative flex flex-0 flex-col px-6 py-8 sm:flex-row sm:items-center sm:ju
 />
 </div>
 
+ <div class="flex justify-start mt-4">
+    <lib-search>
+      <mat-form-field appearance="fill">
+              <mat-label>Pagaré</mat-label>
+              <input matInput type="text" formControlName="p">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Cédula</mat-label>
+              <input matInput type="text" formControlName="cedula">
+            </mat-form-field>
+
+            <button type="submit" style="display: none"></button>
+    </lib-search>
+
+ </div>
+<!--
+<div class="pt-0 pr-4 pb-4 pl-4 space-y-6">
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Filtro por préstamo y cédula</h3>
+      <div class="flex flex-col md:flex-row gap-4 items-end">
+
+          <mat-form-field appearance="fill">
+          <mat-label>Pagaré</mat-label>
+          <input matInput type="text" formControlName="p">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Cédula</mat-label>
+          <input matInput type="text" formControlName="cedula">
+        </mat-form-field>
+
+           <button mat-flat-button color="warn">Buscar</button>
+            <button mat-button color="warn" class="button-cancel">Limpiar</button>
+        </div>
+      </div>
+    </div> -->
+
 <div class="flex flex-auto overflow-hidden">
   <div
       class="flex flex-auto flex-col overflow-hidden px-6 sm:mb-18 sm:overflow-y-auto"
   >
+
       <table mat-table [dataSource]="dataSource" class="" matSort>
           <!-- Columnas -->
            <ng-container matColumnDef="numeroPagare">

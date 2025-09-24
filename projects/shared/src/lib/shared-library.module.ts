@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
-import { SearchComponent } from './components/search/search.component';
-import { FuseDrawerComponent } from '@fuse/components/drawer';
 
 
 @NgModule({
@@ -15,8 +13,6 @@ import { FuseDrawerComponent } from '@fuse/components/drawer';
         FormsModule,
         ReactiveFormsModule,
         BreadCrumbComponent,
-    //     SearchComponent,
-    // FuseDrawerComponent
 
       ],
       exports: [
@@ -25,8 +21,6 @@ import { FuseDrawerComponent } from '@fuse/components/drawer';
         FormsModule,
         ReactiveFormsModule,
         BreadCrumbComponent,
-    //     SearchComponent,
-    // FuseDrawerComponent
       ]
 })
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
