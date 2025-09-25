@@ -149,15 +149,15 @@
 				}
 			}
 		},
-		"citas": {
+		"cobranzas": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
 					"style": "scss"
 				}
 			},
-			"root": "projects/citas",
-			"sourceRoot": "projects/citas/src",
+			"root": "projects/cobranzas",
+			"sourceRoot": "projects/cobranzas/src",
 			"prefix": "app",
 			"architect": {
 				"build": {
@@ -165,10 +165,10 @@
 					"options": {},
 					"configurations": {
 						"production": {
-							"target": "citas:esbuild:production"
+							"target": "cobranzas:esbuild:production"
 						},
 						"development": {
-							"target": "citas:esbuild:development",
+							"target": "cobranzas:esbuild:development",
 							"dev": true
 						}
 					},
@@ -177,7 +177,7 @@
 				"serve": {
 					"builder": "@angular-architects/native-federation:build",
 					"options": {
-						"target": "citas:serve-original:development",
+						"target": "cobranzas:serve-original:development",
 						"rebuildDelay": 0,
 						"dev": true,
 						"port": 0
@@ -193,12 +193,12 @@
 							"zone.js",
 							"zone.js/testing"
 						],
-						"tsConfig": "projects/citas/tsconfig.spec.json",
+						"tsConfig": "projects/cobranzas/tsconfig.spec.json",
 						"inlineStyleLanguage": "scss",
 						"assets": [
 							{
 								"glob": "**/*",
-								"input": "projects/citas/public"
+								"input": "projects/cobranzas/public"
 							},
 							{
 								"glob": "**/*",
@@ -207,7 +207,7 @@
 							}
 						],
 						"styles": [
-							"projects/citas/src/styles.scss"
+							"projects/cobranzas/src/styles.scss"
 						],
 						"scripts": []
 					}
@@ -215,19 +215,19 @@
 				"esbuild": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
-						"outputPath": "dist/citas",
-						"index": "projects/citas/src/index.html",
-						"browser": "projects/citas/src/main.ts",
+						"outputPath": "dist/cobranzas",
+						"index": "projects/cobranzas/src/index.html",
+						"browser": "projects/cobranzas/src/main.ts",
 						"polyfills": [
 							"zone.js",
 							"es-module-shims"
 						],
-						"tsConfig": "projects/citas/tsconfig.app.json",
+						"tsConfig": "projects/cobranzas/tsconfig.app.json",
 						"inlineStyleLanguage": "scss",
 						"assets": [
 							{
 								"glob": "**/*",
-								"input": "projects/citas/public"
+								"input": "projects/cobranzas/public"
 							}
 						],
 						"stylePreprocessorOptions": {
@@ -242,7 +242,7 @@
                             "projects/theme/src/@fuse/styles/main.scss",
                             "projects/theme/src/styles/styles.scss",
                             "projects/theme/src/styles/tailwind.scss",
-							"projects/citas/src/styles.scss"
+							"projects/cobranzas/src/styles.scss"
 						],
 						"scripts": []
 					},
@@ -274,10 +274,10 @@
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "citas:esbuild:production"
+							"buildTarget": "cobranzas:esbuild:production"
 						},
 						"development": {
-							"buildTarget": "citas:esbuild:development"
+							"buildTarget": "cobranzas:esbuild:development"
 						}
 					},
 					"defaultConfiguration": "development",
@@ -349,6 +349,101 @@
               "zone.js",
               "zone.js/testing"
             ]
+          }
+        }
+      }
+    },
+    "cobranzas": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/cobranzas",
+      "sourceRoot": "projects/cobranzas/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/cobranzas",
+            "index": "projects/cobranzas/src/index.html",
+            "browser": "projects/cobranzas/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/cobranzas/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/cobranzas/public"
+              }
+            ],
+            "styles": [
+              "projects/cobranzas/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "cobranzas:build:production"
+            },
+            "development": {
+              "buildTarget": "cobranzas:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/cobranzas/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/cobranzas/public"
+              }
+            ],
+            "styles": [
+              "projects/cobranzas/src/styles.scss"
+            ],
+            "scripts": []
           }
         }
       }

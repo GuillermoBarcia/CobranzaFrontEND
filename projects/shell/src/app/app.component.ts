@@ -81,13 +81,13 @@ export class AppComponent {
                                 id: 'pages.authentication.sign-in.modern-reversed',
                                 title: 'Prestamos Judiciales',
                                 type: 'basic',
-                                link: './citas/prestamos-judiciales',
+                                link: './cobranzas/prestamos-judiciales',
                             },
                             {
                                 id: 'pages.authentication.sign-in.modern-reversed',
                                 title: 'Solicitud Debito Cuenta',
                                 type: 'basic',
-                                link: './citas/aprobar-solicitud-debito-cuenta',
+                                link: './cobranzas/aprobar-solicitud-debito-cuenta',
                             },
                             {
                                 id: 'pages.authentication.sign-in.fullscreen-reversed',

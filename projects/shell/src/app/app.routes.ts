@@ -15,10 +15,10 @@ export const routes: Routes = [
         component: HomeComponent,
     },
     {
-        path: 'citas',
+        path: 'cobranzas',
         loadChildren: () =>
             loadRemoteModule({
-              remoteName: 'citas',
+              remoteName: 'cobranzas',
               exposedModule: './Module',
             }).then((m) => m.AppModule),
     },

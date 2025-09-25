@@ -9,14 +9,17 @@
 
     "start": "ng serve --project=shell --port=4200",
 
-    "citas": "concurrently \"npm run start\" \"ng serve --project=citas --port=4201\"",
+    "cobranzas": "concurrently \"npm run start\" \"ng serve --project=cobranzas --port=4201\"",
+
 
     "build:shell": "ng build shell --configuration production",
-    "build:citas": "ng build citas --configuration production",
+    "build:cobranzas": "ng build cobranzas --configuration production",
 
-    "build:all": "npm run build:shell && npm run build:citas",
+
+    "build:all": "npm run build:shell && npm run build:cobranzas",
     "watch:shell": "ng build shell --watch --configuration development",
-    "watch:citas": "ng build citas --watch --configuration development"
+    "watch:cobranzas": "ng build cobranzas --watch --configuration development"
+
   },
   "private": true,
   "dependencies": {
