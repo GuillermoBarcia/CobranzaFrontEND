@@ -21,8 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSortModule,
     MatSelectModule,
     MatFormFieldModule,
-       ReactiveFormsModule // Añadido aquí
+    ReactiveFormsModule
   ]
 })
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class CobranzasModule {}

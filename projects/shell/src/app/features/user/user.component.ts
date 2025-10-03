@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { UserService } from './user.service';
 import { User } from './user.types';
 import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'user',
@@ -48,7 +49,8 @@ export class UserComponent implements OnInit, OnDestroy {
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
-        private _userService: UserService
+        private _userService: UserService,
+        private authService: AuthService
     ) {}
 
     // -----------------------------------------------------------------------------------------------------
@@ -107,6 +109,8 @@ export class UserComponent implements OnInit, OnDestroy {
      * Sign out
      */
     signOut(): void {
-        this._router.navigate(['/sign-out']);
+        // this._router.navigate(['/sign-out']);
+        this.authService.logout();
     }
+
 }
