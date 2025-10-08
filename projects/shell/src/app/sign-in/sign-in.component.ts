@@ -18,7 +18,8 @@ export class SignInComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onLogin(): void {
+
+onLogin(): void {
     if (!this.usuario || !this.contrasena) {
       this.errorMessage = 'Por favor, completa todos los campos.';
       return;
@@ -26,7 +27,7 @@ export class SignInComponent {
 
     this.authService.login({ usuario: this.usuario, contrasena: this.contrasena }).subscribe({
       next: () => {
-        this.errorMessage = ''; // Limpia mensaje de error
+        this.errorMessage = '';
         this.router.navigate(['/cobranzas/prestamos-judiciales']);
       },
       error: (err) => {
@@ -35,4 +36,4 @@ export class SignInComponent {
       }
     });
   }
-}
+  }

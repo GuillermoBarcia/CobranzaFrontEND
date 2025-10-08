@@ -99,6 +99,12 @@ export class MainLayoutComponent implements AfterViewInit {
             title: 'Cobranza',
             type: 'collapsable',
             children: [
+             {
+                id: 'pages.authentication.sign-in.modern-reversed',
+                title: 'Prestamo Maestro',
+                type: 'basic',
+                link: './cobranzas/prestamo-maestro',
+              },
               {
                 id: 'pages.authentication.sign-in.modern-reversed',
                 title: 'Prestamos Judiciales',

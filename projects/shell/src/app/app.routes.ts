@@ -4,7 +4,6 @@ import { initialDataResolver } from './app.resolvers';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AuthGuard } from './guards/auth.guard';
-import { LayoutComponent } from './layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
@@ -35,6 +34,7 @@ export const routes: Routes = [
           }).then((m) => m.AppModule),
       }
     ]
-  },
-  { path: '**', redirectTo: 'login' }
+  }
+  // ,
+  // { path: '**', redirectTo: 'login' }
 ];

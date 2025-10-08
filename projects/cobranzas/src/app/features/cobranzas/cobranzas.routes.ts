@@ -3,6 +3,7 @@ import { AprobarSolicitudDebitoCuentaComponent } from './pages/aprobar-solicitud
 import { PrestamosJudicialesComponent } from './pages/prestamos-judiciales/prestamos-judiciales.component';
 import { PrestamosJudicialesDetalleComponent } from './pages/prestamos-judiciales-detalle/prestamos-judiciales-detalle.component';
 import { CrearCargoComponent } from './pages/crear-cargo/crear-cargo.component';
+import { PrestamoMaestroFormComponent } from './pages/prestamo-maestro-form/prestamo-maestro-form.component';
 
 export const cobranzasRoute: Routes = [
   {
@@ -24,5 +25,9 @@ export const cobranzasRoute: Routes = [
   {
     path: 'prestamos-judiciales/crear-cargo/:id',
     component: CrearCargoComponent,
+  },
+  {
+    path: 'prestamo-maestro',
+    component: PrestamoMaestroFormComponent
   },
 ];
