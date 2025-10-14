@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
+
 export interface PrestamoJudicial {
   numeroPagare: string;
   identificacion: string;
@@ -20,12 +21,12 @@ export interface PrestamoJudicial {
   fechaAdjudicacion: Date;
   fechaVencimiento: Date;
   nombreOficina: string;
-  codigoUsuario: string;
 }
 
+
 @Component({
-  selector: 'app-prestamos-judiciales',
-  standalone: true,
+  selector: 'app-listar-prestamo-maestro',
+   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -40,10 +41,10 @@ export interface PrestamoJudicial {
     MatButtonModule,
     SearchComponent
   ],
-  templateUrl: './prestamos-judiciales.component.html',
-  styleUrl: './prestamos-judiciales.component.scss'
+  templateUrl: './listar-prestamo-maestro.component.html',
+  styleUrl: './listar-prestamo-maestro.component.scss'
 })
-export class PrestamosJudicialesComponent implements OnInit {
+export class ListarPrestamoMaestroComponent implements OnInit {
   displayedColumns: string[] = [
     'numeroPagare',
     'identificacion',
@@ -53,9 +54,7 @@ export class PrestamosJudicialesComponent implements OnInit {
     'fechaAdjudicacion',
     'fechaVencimiento',
     'nombreOficina',
-    'codigoUsuario',
-    'detalle',
-    'seguimiento'
+    'cargo'
   ];
 
   dataSource = new MatTableDataSource<PrestamoJudicial>([]);
@@ -164,8 +163,8 @@ export class PrestamosJudicialesComponent implements OnInit {
       numeroPrestamo: numeroPrestamo || ''
     };
 
-    this.prestamoMaestroService.getPrestamosIngresados(request).subscribe({
-      next: (response: PrestamosIngresadosResponse) => {
+    this.prestamoMaestroService.getPrestamosPorIdentificacionNumero(request).subscribe({
+      next: (response: PrestamoPorIdentificacionResponse) => {
         if (response.estadoTransaccion && response.jsonObject.length > 0) {
           const data = response.jsonObject.map(item => ({
             numeroPagare: item.numeroPagare,
@@ -175,8 +174,7 @@ export class PrestamosJudicialesComponent implements OnInit {
             montoDesembolsado: item.montoDesembolsado,
             fechaAdjudicacion: new Date(item.fechaAdjudicacion),
             fechaVencimiento: new Date(item.fechaVencimiento),
-            nombreOficina: item.secuencialOficinaNavigation.nombre,
-            codigoUsuario: item.codigoUsuario
+            nombreOficina: item.secuencialOficinaNavigation.nombre
           }));
           this.dataSource.data = data;
         } else {

@@ -104,6 +104,12 @@ export class MainLayoutComponent implements AfterViewInit {
               },
               {
                 id: 'pages.authentication.sign-in.modern-reversed',
+                title: 'Lista Prestamo Maestro',
+                type: 'basic',
+                link: './cobranzas/listar-prestamos-maestro',
+              },
+              {
+                id: 'pages.authentication.sign-in.modern-reversed',
                 title: 'Prestamos Judiciales',
                 type: 'basic',
                 link: './cobranzas/prestamos-judiciales',
@@ -113,12 +119,6 @@ export class MainLayoutComponent implements AfterViewInit {
                 title: 'Solicitud Debito Cuenta',
                 type: 'basic',
                 link: './cobranzas/aprobar-solicitud-debito-cuenta',
-              },
-                 {
-                id: 'pages.authentication.sign-in.modern-reversed',
-                title: 'Abgados',
-                type: 'basic',
-                link: './cobranzas/abogados-ingresos',
               },
               {
                 id: 'pages.authentication.sign-in.fullscreen-reversed',
