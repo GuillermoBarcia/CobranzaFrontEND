@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Sapcedi } from '../../../../../../shared/src/lib/models/sapcedi.model';
 import { AprobarCobranzaDialogComponent } from '../components/aprobar-cita-rechazada-dialog/aprobar-cobranza-dialog.component';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { AprobarCobranzaDialogComponent } from '../components/aprobar-cita-recha
 export class CobranzaDialogService {
   constructor(private dialog: MatDialog) {}
 
-  openAprobarCitaDialog(cita: Sapcedi, config?: {
+  openAprobarCitaDialog( config?: {
     titulo?: string;
     mensaje?: string;
     textoConfirmar?: string;
@@ -17,7 +16,7 @@ export class CobranzaDialogService {
   }): Promise<boolean> {
     return this.dialog
       .open(AprobarCobranzaDialogComponent, {
-        data: { cita, ...config },
+        data: { ...config },
         width: '400px',
         disableClose: true
       })

@@ -34,3 +34,25 @@ export interface PrestamoPorIdentificacionResponse {
   detalleError: string;
   jsonObject: PrestamoPorIdentificacionResponseItem[];
 }
+
+
+
+export interface PrestamosIngresadosResponse {
+  estadoTransaccion: boolean;
+  codigoerror: string;
+  detalleError: string;
+  jsonObject: PrestamosIngresadosResponseItem[];
+}
+
+
+export interface PrestamosIngresadosResponseItem {
+  numeroPagare: string;
+  secuencialClienteNavigation: SecuencialClienteNavigation;
+  montoAprobado: number;
+  montoDesembolsado: number;
+  fechaAdjudicacion: string;
+  fechaVencimiento: string;
+  secuencialOficinaNavigation: SecuencialOficinaNavigation;
+  secuencialDocumentoInformeNavigation: SecuencialDocumentoInformeNavigation;
+  codigoUsuario: string;
+}

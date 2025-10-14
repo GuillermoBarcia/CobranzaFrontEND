@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, Observable, throwError } from "rxjs";
-import { ApiConfig, PrestamoMaestroRequest, PrestamoMaestroResponse, PrestamoPorIdentificacionRequest, PrestamoPorIdentificacionResponse } from "shared";
-import { AuthService } from "../../../../../shell/src/app/services/auth.service";
+import { catchError, map, Observable, throwError } from "rxjs";
+import { ApiConfig, AuthService,
+   PrestamoMaestroRequest,
+   PrestamoMaestroResponse, PrestamoPorIdentificacionRequest, PrestamoPorIdentificacionResponse,
+   PrestamosIngresadosResponse} from "shared";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +35,25 @@ export class PrestamoMaestroService {
     );
   }
 
+  getPrestamosIngresados(request: PrestamoPorIdentificacionRequest): Observable<PrestamosIngresadosResponse> {
+ const token = this.authService.getToken();
+    if (!token) {
+      throw new Error('No token available. Please log in.');
+    }
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<PrestamosIngresadosResponse>(this.apiConfig.getPrestamosIngresadosUrl(), request, { headers }).pipe(
+      catchError(error => {
+        console.error('Error al obtener préstamos', error);
+        return throwError(() => new Error('Error al obtener préstamos: ' + error.message));
+      })
+    );
+  }
+
+  
 createPrestamoMaestro(prestamoData: PrestamoMaestroRequest): Observable<PrestamoMaestroResponse> {
     const token = this.authService.getToken();
     if (!token) {
@@ -44,7 +65,7 @@ createPrestamoMaestro(prestamoData: PrestamoMaestroRequest): Observable<Prestamo
       'Authorization': `Bearer ${token}` // Añade el token como Bearer
     });
 
-    return this.http.post<PrestamoMaestroResponse>(this.apiConfig.getPrestamoMaestroesUrl(), prestamoData, { headers }).pipe(
+    return this.http.post<PrestamoMaestroResponse>(this.apiConfig.createPrestamoMaestroesUrl(), prestamoData, { headers }).pipe(
       catchError(error => {
         console.error('Error al crear PrestamoMaestro', error);
         return throwError(() => new Error('Error al crear el préstamo: ' + error.message));

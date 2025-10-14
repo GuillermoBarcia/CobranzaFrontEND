@@ -3,7 +3,7 @@
     [titulo]="'Registro de Préstamo Maestro'"
     [items]="[
       { label: 'Cobranza', url: '/' },
-      { label: 'Préstamo Maestro', url: '' },
+      { label: 'Préstamo Maestro', url: '/cobranzas/prestamos-maestro' },
       { label: 'Registro de Préstamo Maestro' }
     ]"
   ></lib-bread-crumb>
@@ -14,7 +14,10 @@
         <form [formGroup]="searchForm">
           <mat-form-field appearance="fill">
             <mat-label>Pagaré</mat-label>
-            <input matInput type="text" formControlName="p">
+             <input matInput type="text" formControlName="p" (input)="filterInput($event)" />
+              <button mat-icon-button *ngIf="searchForm.get('p')?.value" (click)="clearField()" matSuffix>
+              <mat-icon>close</mat-icon>
+            </button>
           </mat-form-field>
         </form>
         <button type="submit" style="display: none"></button>
@@ -71,14 +74,9 @@
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
 
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Secuencial Oficina</mat-label>
-        <input matInput type="number" formControlName="secuencialOficina">
-      </mat-form-field> -->
-
         <mat-form-field appearance="fill">
         <mat-label>Nombre de Oficina</mat-label>
-        <input matInput type="text" [value]="oficinaNombre || ''" readonly>
+        <input matInput type="text" formControlName="oficinaNombre" [value]="oficinaNombre || ''" readonly>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -87,16 +85,20 @@
       </mat-form-field>
 
       <!-- Componente para subir documentos -->
-      <div class="col-span-2">
-        <app-prestamo-maestro (documentoUploaded)="onDocumentoUploaded($event)"></app-prestamo-maestro>
+        <div class="col-span-2">
+          <app-prestamo-maestro
+            *ngIf="mostrarUploader"
+            (documentoUploaded)="onDocumentoUploaded($event)">
+          </app-prestamo-maestro>
         <p class="text-sm text-red-600 mt-2" *ngIf="!informeDocumento || !actaDocumento">
           Debe subir ambos documentos (Informe y Acta) para guardar.
         </p>
       </div>
 
       <div class="flex justify-end col-span-2">
-        <button mat-button color="warn" [routerLink]="['/cobranzas']">Cancelar</button>
-        <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!prestamoForm.valid || !informeDocumento || !actaDocumento">Guardar</button>
+        <button mat-button color="warn" class="button-cancel" [routerLink]="['/cobranzas']">Cancelar</button>
+        <button mat-flat-button color="warn" (click)="onSubmit()" 
+        [disabled]="!prestamoForm.valid || !informeDocumento || !actaDocumento">Guardar</button>
       </div>
     </form>
   </div>

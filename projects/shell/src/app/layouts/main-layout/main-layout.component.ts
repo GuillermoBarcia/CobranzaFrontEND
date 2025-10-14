@@ -14,14 +14,11 @@ import {
 } from '@fuse/components/navigation';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { filter, finalize, Subject, takeUntil } from 'rxjs';
-
 import { NavigationService } from '../../core/navigation/navigation.service';
 import { Navigation } from '../../core/navigation/navigation.types';
 import { NotificationsComponent } from '../../features/notification/notifications.component';
 import { UserComponent } from '../../features/user/user.component';
-
-import { FuseSplashScreenService } from '@fuse/services/splash-screen';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from 'shared';
 
 
 // 
@@ -116,6 +113,12 @@ export class MainLayoutComponent implements AfterViewInit {
                 title: 'Solicitud Debito Cuenta',
                 type: 'basic',
                 link: './cobranzas/aprobar-solicitud-debito-cuenta',
+              },
+                 {
+                id: 'pages.authentication.sign-in.modern-reversed',
+                title: 'Abgados',
+                type: 'basic',
+                link: './cobranzas/abogados-ingresos',
               },
               {
                 id: 'pages.authentication.sign-in.fullscreen-reversed',

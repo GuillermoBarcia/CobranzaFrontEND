@@ -1,0 +1,112 @@
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Secuencial Prestamo</mat-label>
+    <input matInput formControlName="secuencialPrestamo" type="number" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Comité Mora</mat-label>
+    <input matInput [matDatepicker]="picker1" formControlName="fechaComiteMora" required>
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Demanda</mat-label>
+    <input matInput [matDatepicker]="picker2" formControlName="fechaDemanda" required>
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Entrega Expediente</mat-label>
+    <input matInput [matDatepicker]="picker3" formControlName="fechaEntregaExpediente" required>
+    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+    <mat-datepicker #picker3></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Saldo Capital A La Fecha</mat-label>
+    <input matInput formControlName="saldoCapitalALaFecha" type="number" step="0.01" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Saldo Total A La Fecha</mat-label>
+    <input matInput formControlName="saldoTotalALaFecha" type="number" step="0.01" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Unidad Judicial</mat-label>
+    <mat-select formControlName="secuencialUnidadJudicial" required>
+      <mat-option *ngFor="let unidad of unidadesJudiciales" [value]="unidad.secuencial">{{ unidad.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo Trámite</mat-label>
+    <mat-select formControlName="codigoTramite" required>
+      <mat-option *ngFor="let tramite of tiposTramite" [value]="tramite.codigo">{{ tramite.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo Materia</mat-label>
+    <mat-select formControlName="codigoMateria" required>
+      <mat-option *ngFor="let materia of tiposMateria" [value]="materia.codigo">{{ materia.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo Medida Cautelar</mat-label>
+    <mat-select formControlName="codigoMedidaCautelar" required>
+      <mat-option *ngFor="let medida of tiposMedidaCautelar" [value]="medida.codigo">{{ medida.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Porcentaje Medida Preventiva</mat-label>
+    <input matInput formControlName="porcentajeMedidaPreventiva" type="number" step="0.01" required>
+  </mat-form-field>
+
+  <mat-checkbox formControlName="cubreMedidaCautelar" required>Cubre Medida Cautelar</mat-checkbox>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Avalúo Tentativo</mat-label>
+    <input matInput formControlName="avaluoTentativo" type="number" step="0.01" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Comentario Satje</mat-label>
+    <textarea matInput formControlName="comentarioSatje"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Observaciones Adicionales</mat-label>
+    <textarea matInput formControlName="observacionesAdicionales"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Documento</mat-label>
+    <mat-select formControlName="secuencialDocumento">
+      <mat-option *ngFor="let doc of tiposDocumento" [value]="doc.codigo">{{ doc.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Abogado</mat-label>
+    <mat-select formControlName="secuencialAbogado">
+      <!-- Placeholder: Load from service -->
+      <mat-option *ngFor="let abogado of abogados" [value]="abogado.secuencial">{{ abogado.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Gestor</mat-label>
+    <mat-select formControlName="secuencialGestor">
+      <!-- Placeholder: Load from service -->
+      <mat-option *ngFor="let gestor of gestores" [value]="gestor.secuencial">{{ gestor.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Guardar</button>
+</form> -->

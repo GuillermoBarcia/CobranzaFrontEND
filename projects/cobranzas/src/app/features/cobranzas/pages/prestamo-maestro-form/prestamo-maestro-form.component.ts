@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,10 +8,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router'; // Agregar Router
-import { ClientePrestamo, Documento, PrestamoMaestroRequest, PrestamoMaestroService, BreadCrumbComponent, PrestamoPorIdentificacionRequest, PrestamoPorIdentificacionResponse } from 'shared';
+import { ClientePrestamo, Documento, PrestamoMaestroService, BreadCrumbComponent, 
+  PrestamoPorIdentificacionRequest, PrestamoPorIdentificacionResponse, SearchComponent, 
+  AuthService,
+  DialogBoxComponent,
+  CommonDialogsService,
+  PrestamoMaestroRequest} from 'shared';
 import { PrestamoMaestroComponent } from "../prestamo-maestro/prestamo-maestro.component";
-import { SearchComponent } from "../../../../shared/components/search/search.component";
-import { AuthService } from '../../../../../../../shell/src/app/services/auth.service';
+import { MatIcon } from "@angular/material/icon";
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-prestamo-maestro-form',
@@ -27,8 +32,9 @@ import { AuthService } from '../../../../../../../shell/src/app/services/auth.se
     RouterModule,
     BreadCrumbComponent,
     PrestamoMaestroComponent,
-    SearchComponent
-  ],
+    SearchComponent,
+    MatIcon
+],
   templateUrl: './prestamo-maestro-form.component.html',
   styleUrls: ['./prestamo-maestro-form.component.scss']
 })
@@ -39,25 +45,48 @@ export class PrestamoMaestroFormComponent implements OnInit {
   actaDocumento: Documento | null = null;
   codigoUsuario: string | null = null; // Variable para almacenar el usuario autenticado
   oficinaNombre: string | null = null; // Nombre de la oficina para mostrar
-   oficinaSecuencial: number | null = null; // Secuencial para el formulario
+  oficinaSecuencial: number | null = null; // Secuencial para el formulario
+  mostrarUploader = true;
 
   constructor(
     private fb: FormBuilder,
     private prestamoMaestroService: PrestamoMaestroService,
     private authService: AuthService, // Inyectar AuthService
-    private router: Router // Inyectar Router para redirección
+    private router: Router, // Inyectar Router para redirección
+   private readonly dialog: MatDialog,
+    private readonly dialogService: CommonDialogsService,
+   
   ) {}
 
   ngOnInit() {
     this.codigoUsuario = this.authService.getUsuario(); // Obtener usuario autenticado
     if (!this.codigoUsuario) {
       console.error('No hay usuario autenticado');
+      this.dialogService.showCustomInfoMessageOrGeneric('No hay usuario autenticado.');
       this.router.navigate(['/login']); // Redirigir al login si no hay usuario
       return;
     }
     this.initializeForms();
   }
 
+  clearField(): void {
+    this.searchForm.get('p')?.setValue('');
+    this.prestamoForm.reset();
+    this.prestamoForm.patchValue({
+      codigoUsuario: this.codigoUsuario,
+      estaActivo: 1
+    });
+    this.informeDocumento = null;
+    this.actaDocumento = null;
+    this.oficinaNombre = null;
+    this.oficinaSecuencial = null;
+  }
+
+  filterInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const value = input.value.replace(/[^0-9]/g, ''); // Elimina todo excepto números
+    this.searchForm.get('p')?.setValue(value, { emitEvent: false }); // Actualiza el valor sin disparar eventos adicionales
+  }
 
   private initializeForms(): void {
     this.prestamoForm = this.fb.group({
@@ -70,37 +99,16 @@ export class PrestamoMaestroFormComponent implements OnInit {
       montoDesembolsado: [{ value: 0, disabled: true }],
       fechaAdjudicacion: [{ value: null, disabled: true }, Validators.required],
       fechaVencimiento: [{ value: null, disabled: true }, Validators.required],
-      secuencialOficina: [{ value: this.oficinaSecuencial || null, disabled: true }, Validators.required],
+      secuencialOficina: [1, Validators.required],
+      oficinaNombre: [{ value: '', disabled: true }, Validators.required],
       codigoUsuario: [{ value: this.codigoUsuario, disabled: true }, Validators.required],
       estaActivo: [{ value: 1, disabled: true }]
     });
 
     this.searchForm = this.fb.group({
-      p: [''] // Control para el campo "Pagaré"
+      p: ['',[Validators.pattern('[0-9]*')]] // Control para el campo "Pagaré"
     });
   }
-
-
-  // private initializeForms(): void {
-  //   this.prestamoForm = this.fb.group({
-  //     numeroPagare: ['', Validators.required],
-  //     identificaClienteExterno: ['', Validators.required],
-  //     identificacion: ['', Validators.required],
-  //     nombre: ['', Validators.required],
-  //     apellido: ['', Validators.required],
-  //     montoAprobado: [0],
-  //     montoDesembolsado: [0],
-  //     fechaAdjudicacion: [null, Validators.required],
-  //     fechaVencimiento: [null, Validators.required],
-  //     secuencialOficina: [1, Validators.required],
-  //     codigoUsuario: [{ value: this.codigoUsuario, disabled: true }, Validators.required], // Campo readonly con usuario autenticado
-  //     estaActivo: [1]
-  //   });
-
-  //   this.searchForm = this.fb.group({
-  //     p: [''] // Control para el campo "Pagaré"
-  //   });
-  // }
 
   onDocumentoUploaded(event: { type: string; base64: string; description: string }): void {
     const documento: Documento = {
@@ -121,7 +129,7 @@ export class PrestamoMaestroFormComponent implements OnInit {
   onSearch(): void {
     const numeroPrestamo = this.searchForm.get('p')?.value;
     if (!numeroPrestamo) {
-      alert('Por favor, ingrese el número de pagaré.');
+          this.dialogService.showCustomInfoMessageOrGeneric('Por favor, ingrese el número de pagaré.');
       return;
     }
 
@@ -154,7 +162,8 @@ export class PrestamoMaestroFormComponent implements OnInit {
           });
           console.log('Formulario llenado:', data);
         } else {
-          alert('No se encontraron datos para el número de pagaré ingresado.');
+          // alert('No se encontraron datos para el número de pagaré ingresado.');
+          this.dialogService.showSimpleNoContent();
           this.prestamoForm.reset();
           this.prestamoForm.patchValue({
             codigoUsuario: this.codigoUsuario,
@@ -166,7 +175,9 @@ export class PrestamoMaestroFormComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error al buscar préstamos', err);
-        alert('Error al buscar préstamos: ' + err.message);
+        // alert('Error al buscar préstamos: ' + err.message);
+
+        this.dialogService.showDataLoadingError('Préstamos',  err.message)
       }
     });
   }
@@ -197,7 +208,7 @@ export class PrestamoMaestroFormComponent implements OnInit {
       this.prestamoMaestroService.createPrestamoMaestro(request).subscribe({
         next: (response) => {
           console.log('Préstamo creado:', response);
-          alert('Préstamo guardado exitosamente');
+          this.dialogService.showCustomSucessMessageOrGeneric();
           this.prestamoForm.reset();
           this.prestamoForm.patchValue({
             codigoUsuario: this.codigoUsuario,
@@ -205,16 +216,24 @@ export class PrestamoMaestroFormComponent implements OnInit {
           });
           this.informeDocumento = null;
           this.actaDocumento = null;
-             this.oficinaNombre = null;
+          this.oficinaNombre = null;
           this.oficinaSecuencial = null;
+
+            // 🔹 Reinicia el componente hijo:
+          this.mostrarUploader = false;
+          setTimeout(() => (this.mostrarUploader = true), 0);
+       
         },
         error: (err) => {
           console.error('Error al crear préstamo', err);
-          alert('Error al guardar el préstamo');
+          // alert('Error al guardar el préstamo');
+          this.dialogService.showCustomErrorMessageOrGeneric('Error al guardar el préstamo. ' + err.message)
+
         }
       });
     } else {
-      alert('Por favor, complete todos los campos y suba ambos documentos.');
+        this.dialogService.showCustomInfoMessageOrGeneric('Por favor, complete todos los campos y suba ambos documentos.');
     }
   }
+
 }

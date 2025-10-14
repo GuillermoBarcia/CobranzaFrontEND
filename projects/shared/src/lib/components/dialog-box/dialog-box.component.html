@@ -1,0 +1,23 @@
+<div mat-dialog-content class="p-6 bg-white max-w-md">
+  <div class="flex items-center gap-2 mb-2">
+    <mat-icon *ngIf="data.showIcon" [ngClass]="getIconColorClass()">{{ data.icon }}</mat-icon>
+    <h1 [ngClass]="getTitleColorClass()" class="m-0 text-2xl font-semibold leading-tight">
+      {{ data.title }}
+    </h1>
+  </div>
+  <h2 class="text-xl text-black m-0 font-light">
+    {{ data.message }}
+  </h2>
+
+  <br/>
+  <div class="dialog-actions flex justify-end gap-2">
+    @if (data.showCancelButton){
+      <button mat-flat-button *ngIf="data.cancelText" [ngClass]="getCancelButtonClass()" (click)="dialogRef?.close(false)">
+        {{ data.cancelText }}
+      </button>
+    }
+    <button mat-flat-button [ngClass]="getConfirmButtonClass()" (click)="dialogRef?.close(true)">
+      {{ data.confirmText }}
+    </button>
+  </div>
+</div>

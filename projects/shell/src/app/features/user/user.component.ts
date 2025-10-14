@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 import { UserService } from './user.service';
 import { User } from './user.types';
 import { Subject, takeUntil } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from 'shared';
 
 @Component({
     selector: 'user',

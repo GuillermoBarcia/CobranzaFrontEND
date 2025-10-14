@@ -1,0 +1,16 @@
+<div class="alert-dialog">
+  <div [ngClass]="headerClass" class="alert-header">
+    <h2>{{ data.title }}</h2>
+  </div>
+  <div class="alert-body">
+    <p>{{ data.message }}</p>
+  </div>
+  <div class="alert-actions">
+    <button mat-stroked-button (click)="onCancel()">
+      {{ data.cancelText || 'Cancelar' }}
+    </button>
+    <button mat-raised-button (click)="onConfirm()">
+      {{ data.confirmText || 'Aceptar' }}
+    </button>
+  </div>
+</div>

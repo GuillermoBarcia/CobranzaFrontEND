@@ -4,6 +4,7 @@ import { PrestamosJudicialesComponent } from './pages/prestamos-judiciales/prest
 import { PrestamosJudicialesDetalleComponent } from './pages/prestamos-judiciales-detalle/prestamos-judiciales-detalle.component';
 import { CrearCargoComponent } from './pages/crear-cargo/crear-cargo.component';
 import { PrestamoMaestroFormComponent } from './pages/prestamo-maestro-form/prestamo-maestro-form.component';
+import { AbogadosIngresosComponent } from './pages/abogados-ingresos/abogados-ingresos.component';
 
 export const cobranzasRoute: Routes = [
   {
@@ -29,5 +30,9 @@ export const cobranzasRoute: Routes = [
   {
     path: 'prestamo-maestro',
     component: PrestamoMaestroFormComponent
+  },
+    {
+    path: 'abogados',
+    component: AbogadosIngresosComponent
   },
 ];

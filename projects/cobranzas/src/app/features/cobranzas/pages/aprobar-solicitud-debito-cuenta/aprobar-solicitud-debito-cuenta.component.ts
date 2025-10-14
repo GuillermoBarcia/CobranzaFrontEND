@@ -1,17 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import {  BreadCrumbComponent, SharedLibraryModule } from "shared";
+import {  BreadCrumbComponent, SearchComponent, SharedLibraryModule } from "shared";
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { Sapcedi } from '../../../../../../../shared/src/lib/models/sapcedi.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { SearchComponent } from '../../../../shared/components/search/search.component';
 import { CobranzaDialogService } from '../../services/cobranza-dialog.service';
 
 export interface SolicitudDebitoCuenta {
@@ -90,21 +88,21 @@ export class AprobarSolicitudDebitoCuentaComponent {
      this.dataSource.paginator = this.paginator;
    }
 
-   aprobarCita(cita: Sapcedi): void {
-     this.citasDialogService.openAprobarCitaDialog(cita, {
+   aprobarCita(): void {
+     this.citasDialogService.openAprobarCitaDialog( {
        titulo: 'Aprobar Solicitud otros Cargos',
        mensaje: `¿Estás seguro de aprobar la solicitud para otros cargos?`,
        textoConfirmar: 'Aceptar',
        textoCancelar: 'Cancelar'
      }).then(confirmado => {
        if (confirmado) {
-         this.procesarAprobacion(cita);
+         this.procesarAprobacion();
        }
      });
    }
 
-   private procesarAprobacion(cita: Sapcedi): void {
+   private procesarAprobacion(): void {
      // lógica para aprobar la cita
-     console.log('Cita aprobada:', cita.numeroConsolidacion);
+     console.log('Cita aprobada:');
    }
 }

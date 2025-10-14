@@ -5,12 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class ApiConfig {
   private readonly baseUrl = 'https://cloud.chibuleo.com/ChibuleoGestionCobranzas/api';
+  private readonly baseUrlCloud = 'https://cloud.chibuleo.com/ChibuleoGestionCobranzas/api';
+
 
   getAuthLoginUrl(): string {
     return `${this.baseUrl}/Auth/login`;
   }
 
-  getPrestamoMaestroesUrl(): string {
+  createPrestamoMaestroesUrl(): string {
     return `${this.baseUrl}/PrestamoMaestroes`;
   }
 
@@ -18,4 +20,27 @@ export class ApiConfig {
     return `${this.baseUrl}/PrestamoMaestroes/PrestamosPorIdentificacionNumero`;
   }
 
+   getPrestamosIngresadosUrl(): string {
+    return `${this.baseUrl}/PrestamoMaestroes/PrestamosIngresados`;
+  }
+
+  getUnidadJudicialActivoUrl(): string {
+    return `${this.baseUrl}/UnidadJudicials/`;
+  }
+
+  getTipoTramitesUrl(): string {
+    return `${this.baseUrl}/TipoTramites/`;
+  }
+
+   getTipoMedidaCautelarsUrl(): string {
+    return `${this.baseUrl}/TipoMedidaCautelars/`;
+  }
+
+    getTipoMateriasUrl(): string {
+    return `${this.baseUrl}/TipoMaterias/`;
+  }
+
+    getTipoDocumentoesUrl(): string {
+    return `${this.baseUrl}/TipoDocumentoes/`;
+  }
 }

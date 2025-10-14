@@ -32,6 +32,17 @@ export class PrestamoMaestroComponent {
     this.handleFileSelected(event, 'D002', 'ACTA', this.actaFileName, this.uploadProgressActa, this.isUploadingActa);
   }
 
+  resetDocumentos(): void {
+  this.informeFileName = '';
+  this.uploadProgressInforme = 0;
+  this.isUploadingInforme = false;
+
+  this.actaFileName = '';
+  this.uploadProgressActa = 0;
+  this.isUploadingActa = false;
+}
+
+
   private handleFileSelected(event: Event, type: string, description: string, fileNameRef: string, progressRef: number, uploadingRef: boolean): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {

@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Sapcedi } from '../../../../../../../shared/src/lib/models/sapcedi.model';
 
 @Component({
   selector: 'app-aprobar-cita-rechazada-dialog',
@@ -12,7 +11,6 @@ export class AprobarCobranzaDialogComponent {
     private _fuseConfirmationService: FuseConfirmationService,
     public dialogRef: MatDialogRef<AprobarCobranzaDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {
-      cita: Sapcedi;
       titulo?: string;
       mensaje?: string;
       textoConfirmar?: string;
