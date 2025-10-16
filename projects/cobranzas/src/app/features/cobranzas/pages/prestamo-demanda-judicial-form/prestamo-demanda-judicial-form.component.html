@@ -1,4 +1,4 @@
-<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>Secuencial Prestamo</mat-label>
     <input matInput formControlName="secuencialPrestamo" type="number" required>
@@ -37,30 +37,42 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Unidad Judicial</mat-label>
-    <mat-select formControlName="secuencialUnidadJudicial" required>
-      <mat-option *ngFor="let unidad of unidadesJudiciales" [value]="unidad.secuencial">{{ unidad.nombre }}</mat-option>
-    </mat-select>
+    <input matInput [formControl]="unidadJudicialControl" [matAutocomplete]="autoUnidad">
+    <mat-autocomplete #autoUnidad="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let unidad of filteredUnidadesJudiciales | async" [value]="unidad.secuencial">
+        {{ unidad.nombre }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Tipo Trámite</mat-label>
-    <mat-select formControlName="codigoTramite" required>
-      <mat-option *ngFor="let tramite of tiposTramite" [value]="tramite.codigo">{{ tramite.nombre }}</mat-option>
-    </mat-select>
+    <input matInput [formControl]="tipoTramiteControl" [matAutocomplete]="autoTramite">
+    <mat-autocomplete #autoTramite="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let tramite of filteredTiposTramite | async" [value]="tramite.codigo">
+        {{ tramite.nombre }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Tipo Materia</mat-label>
-    <mat-select formControlName="codigoMateria" required>
-      <mat-option *ngFor="let materia of tiposMateria" [value]="materia.codigo">{{ materia.nombre }}</mat-option>
-    </mat-select>
+    <input matInput [formControl]="tipoMateriaControl" [matAutocomplete]="autoMateria">
+    <mat-autocomplete #autoMateria="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let materia of filteredTiposMateria | async" [value]="materia.codigo">
+        {{ materia.nombre }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Tipo Medida Cautelar</mat-label>
-    <mat-select formControlName="codigoMedidaCautelar" required>
-      <mat-option *ngFor="let medida of tiposMedidaCautelar" [value]="medida.codigo">{{ medida.nombre }}</mat-option>
-    </mat-select>
+    <input matInput [formControl]="tipoMedidaCautelarControl" [matAutocomplete]="autoMedida">
+    <mat-autocomplete #autoMedida="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let medida of filteredTiposMedidaCautelar | async" [value]="medida.codigo">
+        {{ medida.nombre }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -87,26 +99,33 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Documento</mat-label>
-    <mat-select formControlName="secuencialDocumento">
-      <mat-option *ngFor="let doc of tiposDocumento" [value]="doc.codigo">{{ doc.nombre }}</mat-option>
-    </mat-select>
+    <input matInput [formControl]="tipoDocumentoControl" [matAutocomplete]="autoDocumento">
+    <mat-autocomplete #autoDocumento="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let doc of filteredTiposDocumento | async" [value]="doc.codigo">
+        {{ doc.nombre }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Abogado</mat-label>
-    <mat-select formControlName="secuencialAbogado">
-      <!-- Placeholder: Load from service -->
-      <mat-option *ngFor="let abogado of abogados" [value]="abogado.secuencial">{{ abogado.nombre }}</mat-option>
-    </mat-select>
+    <input matInput [formControl]="abogadoControl" [matAutocomplete]="autoAbogado">
+    <mat-autocomplete #autoAbogado="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let abogado of filteredAbogados | async" [value]="abogado.secuencial">
+        {{ abogado.nombre }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Gestor</mat-label>
-    <mat-select formControlName="secuencialGestor">
-      <!-- Placeholder: Load from service -->
-      <mat-option *ngFor="let gestor of gestores" [value]="gestor.secuencial">{{ gestor.nombre }}</mat-option>
-    </mat-select>
+    <input matInput [formControl]="gestorControl" [matAutocomplete]="autoGestor">
+    <mat-autocomplete #autoGestor="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let gestor of filteredGestores | async" [value]="gestor.secuencial">
+        {{ gestor.nombre }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Guardar</button>
-</form> -->
+</form>

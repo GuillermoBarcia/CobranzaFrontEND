@@ -22,6 +22,7 @@ export * from './lib/models/tipo-prestamo/tipo-prestamo-model'
 export * from './lib/models/tipo-medida-cautelar/tipo-medida-cautelar.model'
 export * from './lib/models/tipo-materia/tipo-materia.model'
 export * from './lib/models/tipo-documento/tipo-documento.model'
+export * from './lib/models/abogado-gestor/abogado-gestor.model'
 
 //servicios
 export * from './lib/services/prestamo-maestro/prestamo-maestro.service'
@@ -32,6 +33,8 @@ export * from './lib/services/tipo-materia/tipo-materia.service'
 export * from './lib/services/tipo-documento/tipo-documento.service'
 export * from './lib/services/autenticacion/auth.service'
 export * from './lib/services/dialog/common-dialogs.service'
+export * from './lib/services/abogado-gestor/abogado-gestor.service'
+
 
 //componentes
 export * from './lib/components/search/search.component'

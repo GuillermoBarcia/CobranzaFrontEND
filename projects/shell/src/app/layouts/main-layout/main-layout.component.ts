@@ -108,6 +108,12 @@ export class MainLayoutComponent implements AfterViewInit {
                 type: 'basic',
                 link: './cobranzas/listar-prestamos-maestro',
               },
+                {
+                id: 'pages.authentication.sign-in.modern-reversed',
+                title: 'Judicial',
+                type: 'basic',
+                link: './cobranzas/prestamo-demanda-judicial-form',
+              },
               {
                 id: 'pages.authentication.sign-in.modern-reversed',
                 title: 'Prestamos Judiciales',

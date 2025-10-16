@@ -40,7 +40,15 @@ export class ApiConfig {
     return `${this.baseUrl}/TipoMaterias/`;
   }
 
-    getTipoDocumentoesUrl(): string {
+  getTipoDocumentoesUrl(): string {
     return `${this.baseUrl}/TipoDocumentoes/`;
+  }
+
+  getAbogadoOficinaActivoItemUrl(secuencialOficina: number): string {
+    return `${this.baseUrl}/AbogadoGestorOficinas/AbogadoOficinaActivoItem?secuencialOficina=${secuencialOficina}`;
+  }
+
+  getGestorOficinaActivoItemUrl(secuencialOficina: number): string {
+    return `${this.baseUrl}/AbogadoGestorOficinas/GestorOficinaActivoItem?secuencialOficina=${secuencialOficina}`;
   }
 }
